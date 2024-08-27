@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEEN</title>
+    <style>
+        body {
+            background-color: #ff005e;
+            color: #0286cf;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 3em;
+        }
+        .header h2 {
+            margin: 0;
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .separator {
+            height: 5px;
+            background-color: #0286cf;
+            margin: 20px 0;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 300px;
+            height: 400px;
+            object-fit: cover;
+            cursor: pointer;
+            border: 2px solid #0286cf;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
+        .modal-content {
+            margin: auto;
+            padding: 10px;
+            width: 100%;
+            max-width: 800px;
+            background-color: rgba(0, 0, 0, 0);
+            color: #0286cf;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .modal img {
+            width: 75%;
+            height: auto;
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .arrow {
+            cursor: pointer;
+            font-size: 2em;
+            padding: 0 20px;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>WEEN</h1>
+        <h2>Subtitle goes here</h2>
+    </div>
+    <div class="separator"></div>
+    <div class="gallery">
+        <img src="https://i.imgur.com/m2PhLzE.jpeg" alt="Placeholder Image 1" onclick="openModal(0, 0)">
+        <img src="https://via.placeholder.com/200x150" alt="Placeholder Image 2" onclick="openModal(1, 0)">
+        <img src="https://via.placeholder.com/200x150" alt="Placeholder Image 3" onclick="openModal(2, 0)">
+    </div>
+
+    <!-- Modal -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div id="modalImageContainer">
+                <span class="arrow" onclick="prevImage()">&#10094;</span>
+                <img id="modalImage" src="" alt="Modal Image">
+                <span class="arrow" onclick="nextImage()">&#10095;</span>
+            </div>
+            <div id="modalDescription">Description goes here</div>
+        </div>
+    </div>
+
+    <script>
+        let currentImageIndex;
+        let currentGalleryIndex;
+        let modalImages = [
+            [
+                ["https://i.imgur.com/m2PhLzE.jpeg", "Image 1 description"],
+                ["https://i.imgur.com/B4YxVTa.jpeg", "Image 1a description"],
+                ["https://i.imgur.com/tMf7rSV.jpeg", "Image 1b description"],
+                ["https://payload.cargocollective.com/1/9/309090/14401107/WEEN.2022.GIGART.WEBSITE_450.jpg", "Image 1c description"]
+            ],
+            [
+                ["https://via.placeholder.com/800x600", "Image 2 description"],
+                ["https://via.placeholder.com/800x600/ffff00", "Image 2a description"],
+                ["https://via.placeholder.com/800x600/ff00ff", "Image 2b description"],
+                ["https://via.placeholder.com/800x600/00ffff", "Image 2c description"]
+            ],
+            [
+                ["https://via.placeholder.com/800x600", "Image 3 description"],
+                ["https://via.placeholder.com/800x600/00ffcc", "Image 3a description"],
+                ["https://via.placeholder.com/800x600/ffcc00", "Image 3b description"],
+                ["https://via.placeholder.com/800x600/cc00ff", "Image 3c description"]
+            ]
+        ];
+
+        function openModal(galleryIndex, imageIndex) {
+            currentGalleryIndex = galleryIndex;
+            currentImageIndex = imageIndex;
+            updateModalImage();
+            document.getElementById('myModal').style.display = "block";
+        }
+
+        function closeModal() {
+            document.getElementById('myModal').style.display = "none";
+        }
+
+        function prevImage() {
+            if (currentImageIndex > 0) {
+                currentImageIndex--;
+                updateModalImage();
+            }
+        }
+
+        function nextImage() {
+            if (currentImageIndex < modalImages[currentGalleryIndex].length - 1) {
+                currentImageIndex++;
+                updateModalImage();
+            }
+        }
+
+        function updateModalImage() {
+            let currentModalImage = document.getElementById('modalImage');
+            let currentDescription = document.getElementById('modalDescription');
+            currentModalImage.src = modalImages[currentGalleryIndex][currentImageIndex][0];
+            currentDescription.innerText = modalImages[currentGalleryIndex][currentImageIndex][1];
+        }
+
+        window.onclick = function(event) {
+            if (event.target == document.getElementById('myModal')) {
+                closeModal();
+            }
+        }
+    </script>
+
+</body>
+</html>
