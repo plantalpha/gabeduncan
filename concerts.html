@@ -135,9 +135,36 @@
             border: none;
             cursor: pointer;
         }
+        
+        .home-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-image: radial-gradient(circle, #8ae399, #426cf5); /* Use background-image for gradients */
+    color: #f5ffd6;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 1s ease, background-image 5s ease; /* Specify background-image for gradient transitions */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.home-button:hover {
+    background-image: radial-gradient(circle, #426cf5, #8ae399); /* Use background-image for gradients */
+    color: #f5ffd6;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
+        
     </style>
 </head>
 <body>
+<a href="https://gabeduncan.com/" class="home-button">Home</a>
 
     <h1>Gabe's  Concert  History</h1>
     <div class="decorative-line"></div>
