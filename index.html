@@ -39,27 +39,46 @@
             margin-top: 20px;
             margin-bottom: 40px;
             font-size: 40px;
-            font-family: 'Garamond';
-            color: #298374;
-            text-shadow: 2px 2px 0 #000;
+            font-family: 'Tahoma';
+            color: #989414;
+            text-shadow: 3px 1px 0 #000;
         }
 
         .segment-line {
             width: 100%;
             height: 4px;
-            background-color: #298374;
+            background-color: #111111;
             margin: 20px auto;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
         }
 
-        .image-container {
+        .image-container-1 {
+            margin: 10px auto;
+            display: flex;
+            justify-content: space-around;
+            max-width: 700px;
+        }
+
+        .image-container-1 img {
+            border: 3px solid #298374;
+            border-radius: 10px;
+            max-width: 120px;
+            transform: rotate(0deg);
+            transition: transform 0.2s;
+        }
+
+        .image-container-1 img:hover {
+            transform: rotate(3deg);
+        }
+		
+        .image-container-2 {
             margin: 20px auto;
             display: flex;
             justify-content: space-around;
             max-width: 800px;
         }
 
-        .image-container img {
+        .image-container-2 img {
             border: 3px solid #298374;
             border-radius: 10px;
             max-width: 100px;
@@ -67,15 +86,15 @@
             transition: transform 0.2s;
         }
 
-        .image-container img:hover {
+        .image-container-2 img:hover {
             transform: rotate(0deg);
         }
 
         .pentagon {
             position: relative;
             margin: 50px auto;
-            width: 300px;
-            height: 300px;
+            width: 400px;
+            height: 400px;
         }
 
         .pentagon a {
@@ -122,12 +141,12 @@
         .marquee {
             display: flex;
             white-space: nowrap;
-            animation: marquee 10s linear infinite;
+            animation: marquee 13s linear infinite;
         }
 
         .marquee span {
             display: inline-block;
-            padding: 0 2rem; /* Spacing between repetitions */
+            padding: 10 2rem; /* Spacing between repetitions */
         }
 
         @keyframes marquee {
@@ -150,10 +169,10 @@
     </div>
     
 </div>
-    <div class="image-container">
-        <img src="https://i.imgur.com/9p0gsEd.png" alt="Blurry Murr">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
+    <div class="image-container-1">
+        <img src="https://i.imgur.com/wr1DvIc.png" alt="Blurry Murr">
+        <img src="https://i.imgur.com/9p0gsEd.png" alt="Image 2">
+        <img src="https://i.imgur.com/V1sGlRg.png" alt="Image 3">
     </div>
     <li></li>
     <div class="segment-line"></div>
@@ -162,8 +181,8 @@
     <li></li>
     <div class="pentagon">
         <a href="https://example.com/page1" title="Icon 1"><img src="icon1.jpg" alt="Icon 1"><h1>ME</h1></a>     
-        <a href="https://example.com/page2" title="Icon 2"><img src="icon2.jpg" alt="Icon 2"><h1>Concerts</h1></a>
-        <a href="https://example.com/page3" title="Icon 3"><img src="https://i.imgur.com/1hX3tN9.png" alt="Icon 3"><h1>WEEN</h1></a>
+        <a href="https://gabeduncan.com/concerts" title="Icon 2"><img src="https://i.imgur.com/fYaBGXo.png" alt="Icon 2"><h1>Concerts</h1></a>
+        <a href="https://gabeduncan.com/ween" title="Icon 3"><img src="https://i.imgur.com/1hX3tN9.png" alt="Icon 3"><h1>WEEN</h1></a>
         <a href="https://example.com/page4" title="Icon 4"><img src="icon4.jpg" alt="Icon 4"><h1>Why</h1></a>
         <a href="https://example.com/page5" title="Icon 5"><img src="icon5.jpg" alt="Icon 5"><h1>Music</h1></a>
     </div>

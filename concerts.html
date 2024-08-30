@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concert History</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap');
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: 80px;
+            text-align: center;
+            margin-bottom: 0;
+        }
+
+        .decorative-line {
+            width: 80%;
+            margin: 0 auto;
+            border-bottom: 3px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .year-columns {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .year-column {
+            width: 30%;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: bold;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .concert-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .concert-list li {
+            margin: 10px 0;
+            font-size: 24px;
+            cursor: pointer;
+            color: #007BFF;
+            text-decoration: underline;
+        }
+
+        .dialogue-box {
+            display: none;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+            width: 80%;
+            max-width: 1400px;
+            max-height: 90%;
+            overflow-y: auto;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .dialogue-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .song-list-container {
+            width: 50%;
+        }
+
+        .song-list {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .song-list li {
+            margin-bottom: 5px;
+        }
+
+        .carousel-container {
+            width: 55%;
+            text-align: center;
+        }
+
+        .carousel img {
+            max-width: 100%;
+            max-height: 700px;
+            display: none;
+        }
+
+        .carousel img.active {
+            display: block;
+        }
+
+        .carousel-controls {
+            margin-top: 10px;
+        }
+
+        .carousel-controls button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            background-color: #007BFF;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        .close-dialogue {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .close-dialogue button {
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Gabe's  Concert  History</h1>
+    <div class="decorative-line"></div>
+
+    <div class="year-columns">
+        <div class="year-column">
+            <h2>2024</h2>
+            <ul class="concert-list">
+                <li onclick="openDialogue('concert1')">Limp Bizkit - 8/2/2024</li>
+                <li onclick="openDialogue('concert2')">Dead & Company - 7/6/2024</li>
+                <li onclick="openDialogue('concert3')">Red Hot Chili Peppers - 6/26/24</li>
+            </ul>
+        </div>
+        <div class="year-column">
+            <h2>2023</h2>
+            <ul class="concert-list">
+                <li onclick="openDialogue('concert4')">Lil Uzi Vert - 11/3/2023</li>
+                <li onclick="openDialogue('concert5')">Travis Scott - 10/13/2023</li>
+                <li onclick="openDialogue('concert6')">Drake & 21 Savage - 9/23/23</li>
+            </ul>
+        </div>
+        <div class="year-column">
+            <h2>2022</h2>
+            <ul class="concert-list">
+                <li onclick="openDialogue('concert7')">Band Name - Concert Date 7</li>
+                <li onclick="openDialogue('concert8')">Band Name - Concert Date 8</li>
+                <li onclick="openDialogue('concert9')">Band Name - Concert Date 9</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Dialogue Box 1 -->
+    <div class="dialogue-box" id="concert1">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+      	<h3>Limp Bizkit at PNC Music Pavilion, Charlotte, NC - 8/2/2024</h3>
+        <ul class="song-list">
+            <li>1. Break Stuff</li>
+            <li>2. Hot Dog</li>
+            <li>3. Rollin' (Air Raid Vehicle)</li>
+            <li>4. My Generation</li>
+            <li>5. Livin' It Up</li>
+            <li>6. My Way</li>
+            <li>7. N 2 Gether Now</li>
+            <li>8. Nookie</li>
+            <li>9. Full Nelson</li>
+            <li>10. RestInPeace</li>
+            <li>11. Boiler</li>
+            <li>12. Take a Look Around</li>
+            <li>13. Break Stuff</li>
+        </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/qnbw1Ep.png" alt="Concert Poster" class="active">
+                    <img src="https://i.imgur.com/A0COXw8.png" alt="Concert Photo 1">
+                    <img src="https://i.imgur.com/cONWred.png" alt="Concert Photo 2">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert1')">Previous</button>
+                    <button onclick="nextImage('concert1')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert1')">Close</button>
+        </div>
+    </div>
+
+    <!-- Dialogue Box 2 -->
+    <div class="dialogue-box" id="concert2">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+                <h3>Dead & Company at Sphere, Las Vegas, NV - 7/6/2024</h3>
+        <ul class="song-list">
+            <li><b>Set 1:</b></li>
+            <li>1. Iko Iko<sup>1</sup></li>
+            <li><i>Sphere "Door" Opens, liftoff</i></li>
+            <li>2. Shakedown Street ></li>
+            <li>3. The Music Never Stopped</li>
+            <li>4. Big Railroad Blues<sup>2</sup></li>
+            <li>5. Row Jimmy</li>
+            <li>6. Sugaree</li>
+            <li>7. One More Saturday Night</li>
+                       <p></p>
+            <li><b>Set 2:</b></li>
+            <li>8. Greatest Story Ever Told</li>
+            <li>9. Mr. Charlie</li>
+            <li>10. Estimated Prophet ></li>
+            <li>11. Eyes of the World ></li>
+            <li>12. Drums ></li>
+            <li>13. Space ></li>
+            <li>14. Uncle John's Band</li>
+            <li>15. Cumberland Blues</li>
+            <li>16. Hell in a Bucket</li>
+            <li>17. Morning Dew</li>
+            <li><i>Old News Broadcast of the Grateful Dead</i></li>
+            <li>18. Sugar Magnolia</li>
+            <p><li><sup>1. With "Man Smart, Woman Smarter" snippet</sup></li>
+            <li><sup>2. Sphere debut + only night played!</sup></li></p>
+        </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/Y6fqx7R.jpg" alt="Concert Poster" class="active">
+                    <img src="photo3.jpg" alt="Concert Photo 3">
+                    <img src="photo4.jpg" alt="Concert Photo 4">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert2')">Previous</button>
+                    <button onclick="nextImage('concert2')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert2')">Close</button>
+        </div>
+    </div>
+
+    <!-- Dialogue Box 3 -->
+    <div class="dialogue-box" id="concert3">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+                <h3>Red Hot Chili Peppers at Coastal Credit Union Music Park, Raleigh, NC - 6/26/24</h3>
+                <ul class="song-list">
+            <li>1. Intro Jam</li>
+            <li>2. Dani California</li>
+            <li>3. The Zephyr Song</li>
+            <li>4. Around the World</li>
+            <li>5. Aquatic Mouth Dance</li>
+            <li>6. Otherside</li>
+            <li>7. Nobody Weird Like Me<sup>1</sup></li>
+            <li>8. Wet Sand</li>
+            <li>9. Eddie</li>
+            <li>10. Tell Me Baby<sup>2</sup></li>
+            <li>11. Reach Out</li>
+            <li>12. Soul to Squeeze</li>
+            <li>13. Californication</li>
+            <li>14. Black Summer</li>
+            <li>15. By the Way</li>
+            <p></p>
+            <li><b>Encore</b></li>
+            <li>16. I Could Have Lied</li>
+            <li>17. Give It Away</li>
+            <p><li><sup>1. with Eazy-E’s “Boyz-n-the-Hood” intro</sup></li>
+            <li><sup>2. dedicated to Shifty Shellshock, who recently passed away</sup></li></p>
+                </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/t3I22KY.jpeg" alt="Concert Poster" class="active">
+                    <img src="photo5.jpg" alt="Concert Photo 5">
+                    <img src="photo6.jpg" alt="Concert Photo 6">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert3')">Previous</button>
+                    <button onclick="nextImage('concert3')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert3')">Close</button>
+        </div>
+    </div>
+
+        <!-- Dialogue Box 4 -->
+	<div class="dialogue-box" id="concert4">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+                <h3>Lil Uzi Vert at PNC Arena, Raleigh, NC - 11/3/2023</h3>
+                <ul class="song-list">
+            <li>1. Suicide Doors</li>
+            <li>2. NFL</li>
+            <li>3. Of Course</li>
+            <li>4. Wokeuplikethis*<sup>1</sup></li>
+            <li>5. Shoota<sup>1</sup></li>
+            <li>6. Buy It</li>
+            <li>7. x2</li>
+            <li>8. POP</li>
+            <li>9. Amped</li>
+            <li>10. Aye</li>
+            <li>11. 20 min<sup>2</sup></li>
+            <li>12. Fire Alarm</li>
+            <li>13. The Way Life Goes</li>
+            <li>14. 444+222</li>
+            <li>15. Neon Guts</li>
+            <li>16. Sanguine Paradise</li>
+            <li>17. XO TOUR Llif3</li>
+            <li>18. Money Longer</li>
+            <li>19. Do What I Want</li>
+            <li>20. Just Wanna Rock</li>
+            <li>21. Scott and Ramona<sup>2,3</sup></li>
+            <li>22. Sauce It Up</li>
+            <p><li><sup>1. Playboi Carti Cover</sup></li>
+            <li><sup>2. Partial
+            <li><sup>3. Live debut</sup></li></p>
+                </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/UHv203K.jpeg" alt="Concert Poster" class="active">
+                    <img src="photo5.jpg" alt="Concert Photo 5">
+                    <img src="photo6.jpg" alt="Concert Photo 6">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert4')">Previous</button>
+                    <button onclick="nextImage('concert4')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert4')">Close</button>
+        </div>
+    </div>
+    
+        <!-- Dialogue Box 5 -->
+	<div class="dialogue-box" id="concert5">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+                <h3>Travis Scott at PNC Arena, Raleigh, NC - 10/13/2023</h3>
+                <ul class="song-list">
+            <li><b>Set 1:</b></li>
+            <li>1. HYAENA</li>
+            <li>2. THANK GOD</li>
+            <li>3. MODERN JAM<sup>1</sup></li>
+            <li>4. Aye<sup>2</sup></li>
+            <li>5. sdp interlude<sup>3</sup></li>
+            <li>6. SIRENS</li>
+            <li>7. Praise God<sup>4</sup></li>
+            <li>8. GOD'S COUNTRY</li>
+            <li>9. MY EYES</li>
+            <li>10. BUTTERFLY EFFECT</li>
+            <li>11. HIGHEST IN THE ROOM</li>
+            <li>12. Mamacita</li>
+            <li>13. CIRCUS MAXIMUS</li>
+            <li>14. MAFIA</li>
+            <li>15. I KNOW ?</li>
+            <li>16. 90210</li>
+            <li>17. MELTDOWN</li>
+            <li>18. TOPIA TWINS</li>
+            <li>19. NO BYSTANDERS</li>
+            <li>20. FE!N</li>
+            <li>21. FE!N <i>(repeated)</i></li>
+            <li>22. Antidote</li>
+            <li>23. SICKO MODE</li>
+            <li>24. GATTI<sup>5</sup></li>
+            <li>25. Nightcrawler<sup>6</sup></li>
+            <li>26. goosebumps</li>
+            <li>27. TELEKINESIS</li>
+            <p><li><sup>1. with Teezo Touchdown</sup></li>
+            <li><sup>2. Lil Uzi Vert cover</sup></li>
+            <li><sup>3. live debut; sang one line from the song live and then harmonized with the backing track</sup></li>
+            <li><sup>4. Ye Cover
+            <li><sup>5. JACKBOYS song
+            <li><sup>6. first time since 2016</sup></li></p>
+                </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/NzAVYck.jpeg" alt="Concert Poster" class="active">
+                    <img src="photo5.jpg" alt="Concert Photo 5">
+                    <img src="photo6.jpg" alt="Concert Photo 6">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert5')">Previous</button>
+                    <button onclick="nextImage('concert5')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert5')">Close</button>
+        </div>
+    </div>
+    
+    
+     <!-- Dialogue Box 6 -->
+	<div class="dialogue-box" id="concert6">
+        <div class="dialogue-content">
+            <div class="song-list-container">
+                <h3>Drake & 21 Savage at Spectrum Center, Charlotte, NC - 9/23/23</h3>
+                <ul class="song-list">
+            <li><b>Set 1:</b></li>
+            <li>1. Look What You've Done</li>
+            <li>2. Marvins Room</li>
+            <li>3. Say Something<sup>1</sup></li>
+            <li>4. Shot for Me</li>
+            <li>5. Can I</li>
+            <li>6. Feel No Ways</li>
+            <li>7. Jaded</li>
+            <li>8. Jungle</li>
+            <li>9. Over</li>
+            <li>10. Headlines</li>
+            <li>11. The Motto</li>
+            <li>12. HYFR (Hell Ya Fucking Right)</li>
+            <li>13. Started From the Bottom</li>
+            <li>14. Energy</li>
+            <li>15. Know Yourself</li>
+            <li>16. Nonstop</li>
+            <li>17. MELTDOWN<sup>2</sup></li>
+            <li>18. SICKO MODE<sup>2</sup></li>
+            <li>19. Way 2 Sexy</li>
+            <li>20. BackOutsideBoyz<sup>3</sup></li>
+            <li>21. Jumbotron Shit Poppin<sup>3</sup></li>
+            <li>22. Laugh Now Cry Later</li>
+            <li>23. God's Plan</li>
+            <li>24. Childs Play</li>
+            <li>25. WAIT FOR U<sup>4</sup></li>
+            <li>26. In My Feelings</li>
+            <li>27. Nice for What</li>
+                       <p></p>
+            <li><b>Set 2:</b></li>
+            <li>28. Controlla</li>
+            <li>29. Too Good</li>
+            <li>30. Hold On, We're Going Home</li>
+            <li>31. Passionfruit</li>
+            <li>32. Work<sup>5</sup></li>
+            <li>33. One Dance</li>
+            <li>34. Calling My Name</li>
+            <li>35. Massive</li>
+            <li>36. Sticky</li>
+            <li>37. Search & Rescue</li>
+            <p></p>
+            <li><b>Set 3 (w/ 21 Savage):</b></li>
+            <li>38. Knife Talk<sup>6</sup></li>
+            <li>39. On BS<sup>3,6</sup></li>
+            <li>40. Spin Bout U<sup>3,6</sup></li>
+            <li>41. Hours in Silence<sup>3,6</sup></li>
+            <li>42. Jimmy Cooks<sup>6</sup></li>
+            <li>43. Rich Flex<sup>3,6</sup></li>
+                         <p></p>
+            <li><b>Encore</b></li>
+            <li>44. Come and See Me<sup>7,8</sup></li>
+            <li>45. Legend<sup>7</sup></li>
+            <p><li><sup>1. Timbaland cover</sup></li>
+            <li><sup>2. Travis Scott cover</sup></li>
+            <li><sup>3. Drake & 21 Savage cover</sup></li>
+            <li><sup>4. Future cover
+            <li><sup>5. Rihanna cover
+            <li><sup>6. with 21 Savage
+            <li><sup>7. PARTYNEXTDOOR cover
+            <li><sup>8. First live performance since 2017</sup></li></p>
+                </ul>
+            </div>
+            <div class="carousel-container">
+                <div class="carousel">
+                    <img src="https://i.imgur.com/a9zv5Mc.png" alt="Concert Poster" class="active">
+                    <img src="photo5.jpg" alt="Concert Photo 5">
+                    <img src="photo6.jpg" alt="Concert Photo 6">
+                </div>
+                <div class="carousel-controls">
+                    <button onclick="prevImage('concert6')">Previous</button>
+                    <button onclick="nextImage('concert6')">Next</button>
+                </div>
+            </div>
+        </div>
+        <div class="close-dialogue">
+            <button onclick="closeDialogue('concert6')">Close</button>
+        </div>
+    </div>
+    
+    
+    <!-- Additional dialogue boxes can be added below, following the same structure as above -->
+   
+   <script>
+        function openDialogue(id) {
+            document.getElementById(id).style.display = 'block';
+        }
+
+        function closeDialogue(id) {
+            document.getElementById(id).style.display = 'none';
+        }
+
+        function prevImage(dialogueId) {
+            var images = document.querySelectorAll('#' + dialogueId + ' .carousel img');
+            var currentIndex = 0;
+
+            images.forEach((img, index) => {
+                if (img.classList.contains('active')) {
+                    img.classList.remove('active');
+                    currentIndex = index;
+                }
+            });
+
+            var newIndex = (currentIndex - 1 + images.length) % images.length;
+            images[newIndex].classList.add('active');
+        }
+
+        function nextImage(dialogueId) {
+            var images = document.querySelectorAll('#' + dialogueId + ' .carousel img');
+            var currentIndex = 0;
+
+            images.forEach((img, index) => {
+                if (img.classList.contains('active')) {
+                    img.classList.remove('active');
+                    currentIndex = index;
+                }
+            });
+
+            var newIndex = (currentIndex + 1) % images.length;
+            images[newIndex].classList.add('active');
+        }
+    </script>
+    
+</body>
+</html>
