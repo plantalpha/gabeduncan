@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gabe Duncan's Retro Website</title>
+    <title>welcome to brown town</title>
     <style>
 		a {
   			text-decoration: none;
@@ -29,8 +29,17 @@
         h2 {
             margin-top: 20px;
             margin-bottom: 40px;
-            font-size: 80px;
+            font-size: 120px;
             font-family: 'Brush Script MT';
+            color: #298374;
+            text-shadow: 2px 2px 0 #000;
+        }
+        
+         h3 {
+            margin-top: 20px;
+            margin-bottom: 40px;
+            font-size: 40px;
+            font-family: 'Garamond';
             color: #298374;
             text-shadow: 2px 2px 0 #000;
         }
@@ -103,14 +112,46 @@
             border: 0px solid #333;
             cursor: pointer;
         }
+        
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+        }
+
+        .marquee {
+            display: flex;
+            white-space: nowrap;
+            animation: marquee 10s linear infinite;
+        }
+
+        .marquee span {
+            display: inline-block;
+            padding: 0 2rem; /* Spacing between repetitions */
+        }
+
+        @keyframes marquee {
+            from {
+                transform: translateX(100%);
+            }
+            to {
+                transform: translateX(-230%);
+            }
+        }
+        
     </style>
 </head>
 
 <body>
 
-    <h2>Welcome!</h2>
+<div class="marquee-container">
+    <div class="marquee">
+        <span><h3>The following website contains scenes of graphic stupidity among four lifelong friends who compete to embarrass each other</h3></span>
+    </div>
+    
+</div>
     <div class="image-container">
-        <img src="image1.jpg" alt="Image 1">
+        <img src="https://i.imgur.com/9p0gsEd.png" alt="Blurry Murr">
         <img src="image2.jpg" alt="Image 2">
         <img src="image3.jpg" alt="Image 3">
     </div>
