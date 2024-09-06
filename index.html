@@ -169,9 +169,7 @@
 </div>
 
 <div class="clickable">
-    <a href="https://gabeduncan.com/ween">
-        <img src="clickable.jpg" alt="Click Me">
-    </a>
+    <img src="clickable.jpg" alt="DO NOT Click Me">
 </div>
 
 <audio id="icon-sound" src="riverriverriver.mp4"></audio>
@@ -232,9 +230,37 @@
             audioElement.currentTime = 0; // Reset audio to start
             audioElement.play(); // Play audio
         });
+
+        // Add video pop-up on click of "clickable"
+        const clickableElement = document.querySelector('.clickable');
+        clickableElement.addEventListener('click', function(event) {
+            event.preventDefault(); // Prevent any default behavior
+
+            // Create video element
+            const videoElement = document.createElement('video');
+            videoElement.src = 'MURRWHY.mp4'; // Replace with your video file path
+            videoElement.controls = false; // No controls needed, auto-play
+            videoElement.autoplay = true; // Auto-play video
+            videoElement.style.position = 'fixed';
+            videoElement.style.top = '50%';
+            videoElement.style.left = '50%';
+            videoElement.style.transform = 'translate(-50%, -50%)';
+            videoElement.style.zIndex = '9999';
+            videoElement.style.width = '80%'; // Adjust width as needed
+            videoElement.style.height = 'auto';
+
+            // Append video to body
+            document.body.appendChild(videoElement);
+
+            // Remove video after it ends
+            videoElement.addEventListener('ended', function() {
+                videoElement.remove();
+            });
+        });
         
     });
 </script>
 
 </body>
 </html>
+
