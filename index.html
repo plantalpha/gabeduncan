@@ -25,9 +25,13 @@
         h1 {
             margin-top: 5px;
             margin-bottom: 5px;
-            font-size: 16px;
-            color: #346123;
-            text-shadow: 0px 0px 0 #000;
+            font-size: 40px;
+            color: #281234;
+            text-shadow:
+        -1px -1px 0 white,   /* Top-left shadow */
+         1px -1px 0 white,   /* Top-right shadow */
+        -1px  1px 0 white,   /* Bottom-left shadow */
+         1px  1px 0 white;   /* Bottom-right shadow */
         }
 
         h2 {
@@ -47,8 +51,18 @@
             color: #f9ff42;
             text-shadow: 3px 1px 0 #000;
         }
+        
+        h4 {
+            margin-top: 30px;
+            margin-bottom: 5px;
+            font-size: 40px;
+            font-family: 'Tahoma';
+            color: #f9ff42;
+            text-shadow: 3px 1px 0 #000;
+        }
 
         .segment-line {
+            position: absolute;
             width: 99%;
             height: 4px;
             background-color: #111111;
@@ -141,6 +155,25 @@
                 transform: translateX(-230%);
             }
         }
+        
+        .box {
+            position: absolute;
+            margin-right: 50px;
+  			margin-left: 50px;
+            width: 150px;
+            height: 500px;
+        }
+        
+        .box2 {
+            position: absolute;
+            right: 0; /* Positions the box to the right side */
+    		top: 233px; /* Adjusts the vertical position */
+            margin-right: 50px;
+  			margin-left: 50px;
+            width: 150px;
+            height: 500px;
+        }
+        
     </style>
 </head>
 
@@ -153,20 +186,33 @@
 </div>
 
 <div class="image-container-1">
-    <img src="https://i.imgur.com/wr1DvIc.png" alt="Blurry Murr">
-    <img src="https://i.imgur.com/9p0gsEd.png" alt="Image 2">
-    <img src="https://i.imgur.com/V1sGlRg.png" alt="Image 3">
+    <img src="https://i.imgur.com/9p0gsEd.png" alt="Blurry Murr">
+    <img src="https://i.imgur.com/9p0gsEd.png" alt="Blurry Murr">
+    <img src="https://i.imgur.com/9p0gsEd.png" alt="Blurry Murr">
 </div>
 
 <div class="segment-line"></div>
 
+<div class="box">
+<h4>platypus</h4>
+<img src="https://i.imgur.com/wr1DvIc.png" alt="Blurry Murr" width="100" height="200">
+<h1>platypus</h1>
+</div>
+
 <div class="pentagon">
     <a href="https://gabeduncan.com/" title="la music"><img src="https://i.imgur.com/QwAYceo.png" alt="Icon 1"><h1></h1></a>     
-    <a href="https://gabeduncan.com/concerts" title="🕺🏼"><img src="https://i.imgur.com/fYaBGXo.png" alt="Icon 2"><h1></h1></a>
+    <a href="https://gabeduncan.com/concerts" title="🕺🏼"><img src="https://i.imgur.com/j8UICdr.png" alt="Icon 2"><h1></h1></a>
     <a href="https://gabeduncan.com/ween" title="BOOG"><img src="https://i.imgur.com/hF7s62u.png" alt="Icon 3"><h1></h1></a>
     <a href="#" title="River" class="play-sound" id="river-icon"><img src="https://i.imgur.com/HY82sBX.png" alt="Icon 4"><h1></h1></a>
     <a href="https://gabeduncan.com/plantalpha" title="plantalpha"><img src="https://i.imgur.com/7aP86Eg.png" alt="Icon 5"><h1></h1></a>
 </div>
+
+<div class="box2">
+<h4>platypus</h4>
+<img src="https://i.imgur.com/V1sGlRg.png" alt="Blurry Murr" width="100" height="200">
+<h1>platypus</h1>
+</div>
+
 
 <div class="clickable">
     <img src="clickable.jpg" alt="DO NOT Click Me">
