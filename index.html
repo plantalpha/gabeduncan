@@ -26,7 +26,7 @@
             margin-top: 5px;
             margin-bottom: 5px;
             font-size: 40px;
-            color: #281234;
+            color: #923234;
             text-shadow:
         -1px -1px 0 white,   /* Top-left shadow */
          1px -1px 0 white,   /* Top-right shadow */
@@ -58,7 +58,7 @@
             font-size: 40px;
             font-family: 'Tahoma';
             color: #f9ff42;
-            text-shadow: 3px 1px 0 #000;
+            text-shadow: 3px 2px 0 #000;
         }
 
         .segment-line {
@@ -121,14 +121,17 @@
         }
 
         .clickable {
-            margin-top: 50px;
-        }
+    margin-top: 50px;
+}
 
-        .clickable img {
-            width: 75px;
-            border: 0px solid #333;
-            cursor: pointer;
-        }
+.clickable-text {
+    font-size: 20px; /* Adjust the font size as needed */
+    color: #0000ff; /* Color for the text */
+    text-decoration: underline; /* Optional: underline to make it look clickable */
+    cursor: pointer; /* Changes the cursor to indicate it's clickable */
+    border: none; /* No border needed */
+    background: none; /* No background for the text */
+}
 
         .marquee-container {
             width: 100%;
@@ -168,7 +171,7 @@
             position: absolute;
             right: 0; /* Positions the box to the right side */
     		top: 233px; /* Adjusts the vertical position */
-            margin-right: 50px;
+            margin-right: 70px;
   			margin-left: 50px;
             width: 150px;
             height: 500px;
@@ -215,7 +218,7 @@
 
 
 <div class="clickable">
-    <img src="clickable.jpg" alt="DO NOT Click Me">
+    <span class="clickable-text">DO NOT Click Me</span>
 </div>
 
 <audio id="icon-sound" src="riverriverriver.mp4"></audio>
@@ -277,32 +280,32 @@
             audioElement.play(); // Play audio
         });
 
-        // Add video pop-up on click of "clickable"
-        const clickableElement = document.querySelector('.clickable');
-        clickableElement.addEventListener('click', function(event) {
-            event.preventDefault(); // Prevent any default behavior
+        // Add video pop-up on click of "clickable-text"
+const clickableElement = document.querySelector('.clickable-text');
+clickableElement.addEventListener('click', function(event) {
+    event.preventDefault(); // Prevent any default behavior
 
-            // Create video element
-            const videoElement = document.createElement('video');
-            videoElement.src = 'MURRWHY.mp4'; // Replace with your video file path
-            videoElement.controls = false; // No controls needed, auto-play
-            videoElement.autoplay = true; // Auto-play video
-            videoElement.style.position = 'fixed';
-            videoElement.style.top = '50%';
-            videoElement.style.left = '50%';
-            videoElement.style.transform = 'translate(-50%, -50%)';
-            videoElement.style.zIndex = '9999';
-            videoElement.style.width = '80%'; // Adjust width as needed
-            videoElement.style.height = 'auto';
+    // Create video element
+    const videoElement = document.createElement('video');
+    videoElement.src = 'MURRWHY.mp4'; // Replace with your video file path
+    videoElement.controls = false; // No controls needed, auto-play
+    videoElement.autoplay = true; // Auto-play video
+    videoElement.style.position = 'fixed';
+    videoElement.style.top = '50%';
+    videoElement.style.left = '50%';
+    videoElement.style.transform = 'translate(-50%, -50%)';
+    videoElement.style.zIndex = '9999';
+    videoElement.style.width = '80%'; // Adjust width as needed
+    videoElement.style.height = 'auto';
 
-            // Append video to body
-            document.body.appendChild(videoElement);
+    // Append video to body
+    document.body.appendChild(videoElement);
 
-            // Remove video after it ends
-            videoElement.addEventListener('ended', function() {
-                videoElement.remove();
-            });
-        });
+    // Remove video after it ends
+    videoElement.addEventListener('ended', function() {
+        videoElement.remove();
+    });
+});
         
     });
 </script>
