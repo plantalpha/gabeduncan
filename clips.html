@@ -7,13 +7,31 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 20px;
-            background-color: #f4f4f4;
+            text-align: center;
         }
 
-        /* Stylized button */
-        .random-button {
+        .clip-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            margin-left: 40px;
+        }
+
+        .clip-list li {
+            margin: 20px 0;
+        }
+
+        .clip-list a {
+            text-decoration: none;
+            color: #3498db;
+            font-size: 18px;
+        }
+
+        .clip-list a:hover {
+            color: #2980b9;
+        }
+
+        #random-btn {
             display: inline-block;
             width: 100px;
             height: 100px;
@@ -26,11 +44,10 @@
             margin-bottom: 20px;
         }
 
-        .random-button:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px #006400;
+        #random-btn:hover {
+            background-color: #2980b9;
         }
-
+        
         .line {
             width: 100%;
             height: 4px;
@@ -38,75 +55,67 @@
             margin: 10px 0;
         }
 
-        /* List styles */
-        .quote-list {
-            margin-left: 30px;
-            line-height: 2;
-        }
-
-        .quote-list a {
-            text-decoration: none;
-            color: #007BFF;
-        }
-
-        .quote-list a:hover {
-            text-decoration: underline;
+        .hidden {
+            display: none;
         }
     </style>
 </head>
 <body>
 
-    <!-- Random video button -->
-    <button class="random-button" id="random-button"></button>
-    
-    <!-- Line under the button -->
+    <h1>Clips Page</h1>
+
+    <button id="random-btn">Play Random Clip</button>
+
     <div class="line"></div>
 
-    <!-- List of quotes -->
-    <ul class="quote-list">
-        <li><a href="#" data-video="repairman.mp4">"I am the truest repairman!"</a></li>
-        <li><a href="#" data-video="clip2.mp4">"Quote 2"</a></li>
-        <li><a href="#" data-video="clip3.mp4">"Quote 3"</a></li>
-        <!-- Add more quotes as needed -->
+    <ul class="clip-list">
+        <li><a href="#" class="clip" data-video="repairman.mp4">"I am the truest repairman"</a></li>
+        <li><a href="#" class="clip" data-video="video2.mp4">"Quote 2"</a></li>
+        <li><a href="#" class="clip" data-video="video3.mp4">"Quote 3"</a></li>
+        <!-- Add new quotes here -->
     </ul>
 
-    <script>
-        const videos = ["clip1.mp4", "clip2.mp4", "clip3.mp4"]; // Add new video file names here
+    <!-- Video element hidden by default -->
+    <video id="video-player" class="hidden" controls></video>
 
-        // Play video from the list
-        document.querySelectorAll('.quote-list a').forEach(link => {
-            link.addEventListener('click', function(event) {
+    <script>
+        // Store video sources
+        const videoList = [
+            "video1.mp4",
+            "video2.mp4",
+            "video3.mp4"
+            // Add new videos here
+        ];
+
+        const videoPlayer = document.getElementById("video-player");
+        const randomBtn = document.getElementById("random-btn");
+
+        // Function to play a video by source
+        function playVideo(src) {
+            videoPlayer.src = src;
+            videoPlayer.classList.remove("hidden");
+            videoPlayer.play();
+
+            videoPlayer.onended = function () {
+                videoPlayer.classList.add("hidden");
+            };
+        }
+
+        // Add click event to each quote
+        document.querySelectorAll('.clip').forEach(clip => {
+            clip.addEventListener('click', function (event) {
                 event.preventDefault();
                 const videoSrc = this.getAttribute('data-video');
                 playVideo(videoSrc);
             });
         });
 
-        // Random video button functionality
-        document.getElementById('random-button').addEventListener('click', function() {
-            const randomVideo = videos[Math.floor(Math.random() * videos.length)];
+        // Play a random video on button click
+        randomBtn.addEventListener('click', function () {
+            const randomIndex = Math.floor(Math.random() * videoList.length);
+            const randomVideo = videoList[randomIndex];
             playVideo(randomVideo);
         });
-
-        // Function to play the video
-        function playVideo(videoSrc) {
-            const videoElement = document.createElement('video');
-            videoElement.src = videoSrc;
-            videoElement.controls = false;
-            videoElement.autoplay = true;
-            videoElement.style.position = 'fixed';
-            videoElement.style.top = '50%';
-            videoElement.style.left = '50%';
-            videoElement.style.transform = 'translate(-50%, -50%)';
-            videoElement.style.zIndex = '9999';
-            videoElement.style.width = '80%';
-            videoElement.style.height = 'auto';
-            document.body.appendChild(videoElement);
-
-            videoElement.addEventListener('ended', function() {
-                videoElement.remove();
-            });
-        }
     </script>
 
 </body>
