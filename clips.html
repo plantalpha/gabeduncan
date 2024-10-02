@@ -5,6 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Clips Page</title>
     <style>
+        @font-face {
+            font-family: 'Medderick';
+            src: url('Medderick-Regular.otf') format('opentype'); /* Adjust the path as needed */
+        }
+        
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -40,6 +45,10 @@
             border: none;
             box-shadow: 0 5px #006400; /* Darker green shadow */
             cursor: pointer;
+            font-family: 'Medderick', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
             transition: all 0.2s ease-in-out;
             margin-bottom: 20px;
         }
@@ -71,13 +80,14 @@
 
     <h1>Clips Page</h1>
 
-    <button id="random-btn"></button>
+    <button id="random-btn">? ? ?</button>
 
     <div class="line"></div>
 
     <ul class="clip-list">
         <li><a href="#" class="clip" data-video="repairman.mp4">"I am the truest repairman"</a></li>
         <li><a href="#" class="clip" data-video="zack and cody - dad jump.mp4">Moesby Dodge</a></li>
+        <li><a href="#" class="clip" data-video="kissitmrmoesby.mp4">"Kiss it Mr. Moesby?"</a></li>
         <li><a href="#" class="clip" data-video="MURRWHY.mp4">Murr SOB</a></li>
         <!-- Add new quotes here -->
     </ul>
@@ -87,6 +97,7 @@
         const videoList = [
             "repairman.mp4",
             "zack and cody - dad jump.mp4",
+            "kissitmrmoesby.mp4",
             "MURRWHY.mp4"
             // Add new videos here
         ];
