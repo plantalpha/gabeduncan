@@ -55,10 +55,10 @@
         h4 {
             margin-top: 5px;
             margin-bottom: 5px;
-            font-size: 40px;
+            font-size: 21px;
             font-family: 'Tahoma';
             text-align:center;
-            color: #f9ff42;
+            color: #85ff42;
             text-shadow: 3px 2px 0 #000;
         }
 
@@ -186,6 +186,28 @@
             height: 500px;
         }
         
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: auto;
+            overflow: hidden;
+        }
+
+        .carousel img {
+            width: 100%;
+            height: auto;
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            transition: opacity 1s ease-in-out; /* Transition for smooth fade */
+        }
+
+        .carousel img.active {
+            opacity: 1;
+            position: relative;
+        }
+      
     </style>
 </head>
 
@@ -207,9 +229,13 @@
 <div class="segment-line"></div>
 
 <div class="box">
-<h4>Masana Temples</h4>
-<img src="https://f4.bcbits.com/img/a2717866482_16.jpg" alt="Blurry Murr" width="200" height="200">
-<h1>Kikagaku Moyo</h1>
+<h4>Europe '72 x Ween Boognish Sticker</h4>
+<div class="carousel">
+            <img src="https://i.etsystatic.com/54168526/r/il/a0bbcf/6269954052/il_794xN.6269954052_76rr.jpg" alt="Sticker Image 1" class="active">
+            <img src="https://i.etsystatic.com/54168526/r/il/847970/6317417005/il_794xN.6317417005_ovk3.jpg" alt="Sticker Image 2">
+            <img src="https://i.etsystatic.com/54168526/r/il/647fe9/6317417009/il_794xN.6317417009_hwwg.jpg" alt="Sticker Image 3">
+        </div>
+<h1>$3.33</h1>
 </div>
 
 <div class="pentagon">
@@ -318,6 +344,25 @@ clickableElement.addEventListener('click', function(event) {
 });
         
     });
+    
+    let currentIndex = 0;
+        const images = document.querySelectorAll('.carousel img');
+        const totalImages = images.length;
+
+        function showNextImage() {
+            // Hide current image
+            images[currentIndex].classList.remove('active');
+
+            // Update index for the next image
+            currentIndex = (currentIndex + 1) % totalImages;
+
+            // Show next image
+            images[currentIndex].classList.add('active');
+        }
+
+        // Automatically change the image every 3 seconds with a smooth fade
+        setInterval(showNextImage, 3000);
+        
 </script>
 
 </body>
