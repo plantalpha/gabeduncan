@@ -7,18 +7,34 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            height: 100%;
+        }
+
+        /* Video Background */
+        .video-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            pointer-events: none;
         }
 
         h1 {
             text-align: center;
             font-size: 40px;
             margin-top: 20px;
+            color: white; /* Change text color for visibility */
         }
 
         hr {
             width: 80%;
             margin: 20px auto;
-            border: 1px solid #333;
+            border: 1px solid #fff; /* Change line color for visibility */
         }
 
         .timer-container {
@@ -26,15 +42,18 @@
             flex-direction: column;
             align-items: center;
             gap: 20px;
+            color: white; /* Change text color for visibility */
+            margin-bottom: 40px;
         }
 
         .timer-box {
             width: 80%;
-            border: 2px solid #333;
+            border: 2px solid #fff; /* Change border color for visibility */
             padding: 20px;
             text-align: center;
             border-radius: 0;
             font-size: 1.5em;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background for text readability */
         }
 
         .band-name {
@@ -46,105 +65,110 @@
             font-size: 20px;
             margin-top: 5px;
             margin-bottom: 20px;
-            
         }
 
         .countdown {
             margin-top: 10px;
             font-size: 40px;
         }
-        
-        .home-button {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    padding: 10px 20px;
-    background-image: radial-gradient(circle, #8ae399, #426cf5); /* Use background-image for gradients */
-    color: #f5ffd6;
-    font-size: 18px;
-    font-weight: bold;
-    border-radius: 5px;
-    text-decoration: none;
-    transition: transform 1s ease, background-image 5s ease; /* Specify background-image for gradient transitions */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    z-index: 1000;
-}
 
-.home-button:hover {
-    background-image: radial-gradient(circle, #426cf5, #8ae399); /* Use background-image for gradients */
-    color: #f5ffd6;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-    transform: scale(1.1);
-    cursor: pointer;
-}
-        
+        /* Style for the fixed home button */
+        .home-button {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 10px 20px;
+            background-image: radial-gradient(circle, #8ae399, #426cf5);
+            color: #f5ffd6;
+            font-size: 18px;
+            font-weight: bold;
+            border-radius: 5px;
+            text-decoration: none;
+            transition: transform 1s ease, background-image 5s ease;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .home-button:hover {
+            background-image: radial-gradient(circle, #426cf5, #8ae399);
+            color: #f5ffd6;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            transform: scale(1.1);
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
-<a href="https://gabeduncan.com/" class="home-button">Home</a>
-<h1>Upcoming Concerts</h1>
-<hr>
+    <!-- Video Background -->
+    <video autoplay loop class="video-background">
+        <source src="MR BEAT+ICE V Live.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
 
-<div class="timer-container">
-    <div class="timer-box">
-        <div class="band-name">Goose</div>
-        <div class="performance-time">October 25th, 2024 - 8:00 PM</div>
-        <div class="countdown" id="timer1"></div>
+    <a href="https://gabeduncan.com/" class="home-button">Home</a>
+
+    <h1>Upcoming Concerts</h1>
+    <hr>
+
+    <div class="timer-container">
+        <div class="timer-box">
+            <div class="band-name">Goose</div>
+            <div class="performance-time">October 25th, 2024 - 8:00 PM</div>
+            <div class="countdown" id="timer1"></div>
+        </div>
+
+        <div class="timer-box">
+            <div class="band-name">BigXthaPlug</div>
+            <div class="performance-time">November 1st, 2024 - 7:00 PM</div>
+            <div class="countdown" id="timer2"></div>
+        </div>
+
+        <div class="timer-box">
+            <div class="band-name">Chief Keef</div>
+            <div class="performance-time">November 11th, 2024 - 8:00 PM</div>
+            <div class="countdown" id="timer3"></div>
+        </div>
+
+        <div class="timer-box">
+            <div class="band-name">Polo G</div>
+            <div class="performance-time">November 15th, 2024 - 7:00 PM</div>
+            <div class="countdown" id="timer4"></div>
+        </div>
+
+        <div class="timer-box">
+            <div class="band-name">Weston Estate</div>
+            <div class="performance-time">November 29th, 2024 - 7:00 PM</div>
+            <div class="countdown" id="timer5"></div>
+        </div>
     </div>
 
-    <div class="timer-box">
-        <div class="band-name">BigXthaPlug</div>
-        <div class="performance-time">November 1st, 2024 - 7:00 PM</div>
-        <div class="countdown" id="timer2"></div>
-    </div>
+    <script>
+        function countdown(targetTime, timerElement) {
+            const countDownDate = new Date(targetTime).getTime();
 
-<div class="timer-box">
-        <div class="band-name">Chief Keef</div>
-        <div class="performance-time">November 11th, 2024 - 8:00 PM</div>
-        <div class="countdown" id="timer3"></div>
-    </div>
+            const x = setInterval(function() {
+                const now = new Date().getTime();
+                const distance = countDownDate - now;
 
-<div class="timer-box">
-        <div class="band-name">Polo G</div>
-        <div class="performance-time">November 15th, 2024 - 7:00 PM</div>
-        <div class="countdown" id="timer4"></div>
-    </div>
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-<div class="timer-box">
-        <div class="band-name">Weston Estate</div>
-        <div class="performance-time">November 29th, 2024 - 7:00 PM</div>
-        <div class="countdown" id="timer5"></div>
-    </div>
-</div>
+                timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
 
-<script>
-    function countdown(targetTime, timerElement) {
-        const countDownDate = new Date(targetTime).getTime();
+                if (distance < 0) {
+                    clearInterval(x);
+                    timerElement.innerHTML = "Started!";
+                }
+            }, 1000);
+        }
 
-        const x = setInterval(function() {
-            const now = new Date().getTime();
-            const distance = countDownDate - now;
-
-            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-            timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-
-            if (distance < 0) {
-                clearInterval(x);
-                timerElement.innerHTML = "Started!";
-            }
-        }, 1000);
-    }
-
-    countdown("October 25, 2024 20:00:00", document.getElementById("timer1"));
-    countdown("Novemeber 1, 2024 19:00:00", document.getElementById("timer2"));
-    countdown("Novemeber 11, 2024 20:00:00", document.getElementById("timer3"));
-    countdown("Novemeber 15, 2024 19:00:00", document.getElementById("timer4"));
-    countdown("Novemeber 29, 2024 19:00:00", document.getElementById("timer5"));
-</script>
-
+        countdown("October 25, 2024 20:00:00", document.getElementById("timer1"));
+        countdown("November 1, 2024 19:00:00", document.getElementById("timer2"));
+        countdown("November 11, 2024 20:00:00", document.getElementById("timer3"));
+        countdown("November 15, 2024 19:00:00", document.getElementById("timer4"));
+        countdown("November 29, 2024 19:00:00", document.getElementById("timer5"));
+    </script>
 </body>
 </html>
