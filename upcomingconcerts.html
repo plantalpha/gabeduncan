@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upcoming Concerts</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 40px;
+            margin-top: 20px;
+        }
+
+        hr {
+            width: 80%;
+            margin: 20px auto;
+            border: 1px solid #333;
+        }
+
+        .timer-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .timer-box {
+            width: 80%;
+            border: 2px solid #333;
+            padding: 20px;
+            text-align: center;
+            border-radius: 0;
+            font-size: 1.5em;
+        }
+
+        .band-name {
+            font-weight: bold;
+        }
+
+        .performance-time {
+            font-style: italic;
+            font-size: 20px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+            
+        }
+
+        .countdown {
+            margin-top: 10px;
+            font-size: 40px;
+        }
+        
+        .home-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-image: radial-gradient(circle, #8ae399, #426cf5); /* Use background-image for gradients */
+    color: #f5ffd6;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 1s ease, background-image 5s ease; /* Specify background-image for gradient transitions */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.home-button:hover {
+    background-image: radial-gradient(circle, #426cf5, #8ae399); /* Use background-image for gradients */
+    color: #f5ffd6;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+        
+    </style>
+</head>
+<body>
+<a href="https://gabeduncan.com/" class="home-button">Home</a>
+<h1>Upcoming Concerts</h1>
+<hr>
+
+<div class="timer-container">
+    <div class="timer-box">
+        <div class="band-name">Goose</div>
+        <div class="performance-time">October 25th, 2024 - 8:00 PM</div>
+        <div class="countdown" id="timer1"></div>
+    </div>
+
+    <div class="timer-box">
+        <div class="band-name">Band Name 2</div>
+        <div class="performance-time">Performance Time: 9:30 PM</div>
+        <div class="countdown" id="timer2"></div>
+    </div>
+
+<div class="timer-box">
+        <div class="band-name">Band Name 2</div>
+        <div class="performance-time">Performance Time: 9:30 PM</div>
+        <div class="countdown" id="timer3"></div>
+    </div>
+
+<div class="timer-box">
+        <div class="band-name">Band Name 2</div>
+        <div class="performance-time">Performance Time: 9:30 PM</div>
+        <div class="countdown" id="timer4"></div>
+    </div>
+
+<div class="timer-box">
+        <div class="band-name">Band Name 2</div>
+        <div class="performance-time">Performance Time: 9:30 PM</div>
+        <div class="countdown" id="timer5"></div>
+    </div>
+</div>
+
+<script>
+    function countdown(targetTime, timerElement) {
+        const countDownDate = new Date(targetTime).getTime();
+
+        const x = setInterval(function() {
+            const now = new Date().getTime();
+            const distance = countDownDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            timerElement.innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+
+            if (distance < 0) {
+                clearInterval(x);
+                timerElement.innerHTML = "Started!";
+            }
+        }, 1000);
+    }
+
+    countdown("October 25, 2024 20:00:00", document.getElementById("timer1"));
+    countdown("October 23, 2024 21:30:00", document.getElementById("timer2"));
+    countdown("October 25, 2024 20:00:00", document.getElementById("timer3"));
+    countdown("October 25, 2024 20:00:00", document.getElementById("timer4"));
+    countdown("October 25, 2024 20:00:00", document.getElementById("timer5"));
+</script>
+
+</body>
+</html>
