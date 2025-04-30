@@ -17,6 +17,21 @@
       background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
       background-size: cover;
       text-align: center;
+      position: relative;
+    }
+
+    #gif-overlay {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: url('https://i.pinimg.com/originals/1d/15/d8/1d15d8da8b3b6f3a895828ba2663f409.gif') center center no-repeat;
+      background-size: cover;
+      opacity: 0.2;
+      pointer-events: none;
+      z-index: 0;
     }
 
     header {
@@ -26,6 +41,8 @@
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
+      position: relative;
+      z-index: 1;
     }
 
     header h1 {
@@ -47,6 +64,8 @@
       height: 2px;
       background-color: #ccc;
       margin: 20px auto;
+      position: relative;
+      z-index: 1;
     }
 
     .sticker-layout {
@@ -55,6 +74,8 @@
       align-items: center;
       flex-wrap: wrap;
       padding: 40px;
+      position: relative;
+      z-index: 1;
     }
 
     .box, .box2 {
@@ -118,6 +139,8 @@
 </head>
 <body>
 
+<div id="gif-overlay"></div>
+
 <header>
   <h1>Gabe Duncan</h1>
   <nav>
@@ -145,7 +168,7 @@
     </button>
   </div>
 
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeTJpOTgxeW1yamNsa3JoM2d3dmFxZGhocXg4a3gxcmQzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ii8sG1vg57dC0jJrtI/giphy.gif" alt="fun gif" class="center-gif" alt="fun gif" class="center-gif">
+  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeTJpOTgxeW1yamNsa3JoM2d3dmFxZGhocXg4a3gxcmQzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ii8sG1vg57dC0jJrtI/giphy.gif" alt="fun gif" class="center-gif">
 
   <div class="box2">
     <h5>Chocolate and Cheese Ween Boognish Sticker</h5>
@@ -182,6 +205,7 @@
 
     const musicLink = document.getElementById("music-link");
     const bgMusic = document.getElementById("bg-music");
+    const gifOverlay = document.getElementById("gif-overlay");
     let isPlaying = false;
 
     musicLink.addEventListener("click", function (e) {
@@ -189,8 +213,10 @@
       if (isPlaying) {
         bgMusic.pause();
         bgMusic.currentTime = 0;
+        gifOverlay.style.display = "none";
       } else {
         bgMusic.play();
+        gifOverlay.style.display = "block";
       }
       isPlaying = !isPlaying;
     });
