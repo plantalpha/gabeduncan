@@ -14,7 +14,7 @@
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
       color: #333;
-      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background: url('https://i.imgur.com/O5h3wWg.jpg') no-repeat center center fixed;
       background-size: cover;
       text-align: center;
     }
@@ -39,6 +39,7 @@
       color: #298374;
       font-weight: bold;
       font-size: 16px;
+      cursor: pointer;
     }
 
     .segment-line {
@@ -120,7 +121,7 @@
 <header>
   <h1>Gabe Duncan</h1>
   <nav>
-    <a href="/music">Music</a>
+    <a id="music-link">Music</a>
     <a href="/cube">Cube</a>
     <a href="/poetry">Poetry</a>
     <a href="/clips">Clips</a>
@@ -144,7 +145,7 @@
     </button>
   </div>
 
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeTJpOTgxeW1yamNsa3JoM2d3dmFxZGhocXg4a3gxcmQzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ii8sG1vg57dC0jJrtI/giphy.gif" alt="fun gif" class="center-gif">
+  <img src="https://media.giphy.com/media/IwSG1QKOwDjQk/giphy.gif" alt="fun gif" class="center-gif">
 
   <div class="box2">
     <h5>Chocolate and Cheese Ween Boognish Sticker</h5>
@@ -159,6 +160,8 @@
     </button>
   </div>
 </div>
+
+<audio id="bg-music" src="Slowmedownbubbleboy.WAV" loop></audio>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -176,6 +179,21 @@
 
     setupCarousel(".carousel");
     setupCarousel(".carousel2");
+
+    const musicLink = document.getElementById("music-link");
+    const bgMusic = document.getElementById("bg-music");
+    let isPlaying = false;
+
+    musicLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      if (isPlaying) {
+        bgMusic.pause();
+        bgMusic.currentTime = 0;
+      } else {
+        bgMusic.play();
+      }
+      isPlaying = !isPlaying;
+    });
   });
 </script>
 
