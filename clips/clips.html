@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clips Page</title>
+    <style>
+        @font-face {
+            font-family: 'Medderick';
+            src: url('Medderick-Regular.otf') format('opentype'); /* Adjust the path as needed */
+        }
+        
+        @font-face {
+            font-family: 'Sunny Spells';
+            src: url('Sunny Spells.ttf') format('opentype'); /* Adjust the path as needed */
+        }
+        
+        body {
+            font-family: 'Medderick', sans-serif;
+            text-align: left;
+        }
+        
+        h1 {
+            font-family: 'Sunny Spells', sans-serif;
+            text-align: left;
+            font-size: 80px;
+            margin-top: 5px;
+            margin-bottom: 0px;
+            margin-left: 40px;
+        }
+        
+        h2 {
+            font-family: 'Sunny Spells', sans-serif;
+            text-align: left;
+            font-size: 42px;
+            margin-bottom: 0px;
+            margin-top: 20px;
+        }
+
+        .clip-list {
+            list-style-type: none;
+            padding: 0;
+            text-align: left;
+            margin-left: 40px;
+        }
+
+        .clip-list li {
+            margin: 10px 1;
+        }
+
+        .clip-list a {
+            text-decoration: none;
+            color: #3498db;
+            font-size: 38px;
+        }
+
+        .clip-list a:hover {
+            color: #2980b9;
+        }
+
+        #random-btn {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            background-color: #228B22; /* Evergreen color */
+            border-radius: 50%;
+            border: none;
+            box-shadow: 0 5px #006400; /* Darker green shadow */
+            cursor: pointer;
+            font-family: 'Medderick', sans-serif;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            transition: all 0.2s ease-in-out;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            margin-left: 40px;
+        }
+
+        #random-btn:hover {
+            background-color: #006400;
+        }
+
+        .line {
+            width: 100%;
+            height: 4px;
+            background-color: #333;
+            margin: 10px 0;
+        }
+
+        video {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90vw; /* Covers 90% of viewport width */
+            height: auto;
+            z-index: 1000;
+        }
+
+
+		.home-button {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    background-image: radial-gradient(circle, #8ae399, #426cf5); /* Use background-image for gradients */
+    color: #f5ffd6;
+    font-size: 18px;
+    font-weight: bold;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: transform 1s ease, background-image 5s ease; /* Specify background-image for gradient transitions */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+.home-button:hover {
+    background-image: radial-gradient(circle, #426cf5, #8ae399); /* Use background-image for gradients */
+    color: #f5ffd6;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    transform: scale(1.1);
+    cursor: pointer;
+}
+  
+    </style>
+</head>
+<body>
+<a href="https://gabeduncan.com/" class="home-button">Home</a>
+    <h1>My Favorite Clips</h1>
+
+    <button id="random-btn">? ? ?</button>
+
+    <div class="line"></div>
+
+    <ul class="clip-list">
+        <li><h2>Community</h2></li>
+        <li><a href="#" class="clip" data-video="repairman.mp4">S3E22 - "I am the truest repairman!"</a></li>
+        <li><h2>Impractical Jokers</h2></li>
+        <li><a href="#" class="clip" data-video="MURRWHY.mp4">Murr SOB</a></li>
+        <li><h2>Random</h2></li>
+        <li><a href="#" class="clip" data-video="comm-lint-licker.mp4">Commercial - "You Lint Licker!"`</a></li>
+        <li><h2>Suite Life of Zack and Cody</h2></li>
+        <li><a href="#" class="clip" data-video="zac-moesby-dive.mp4">S1E19 - Moesby Dive</a></li>
+        <li><a href="#" class="clip" data-video="zac-moesby-football.mp4">S1E25 - Moesby Football</a></li>
+        <li><a href="#" class="clip" data-video="zac-moesby-kiss.mp4">S1E25 - "Kiss it Mr. Moesby?"</a></li>
+        <li><a href="#" class="clip" data-video="zac-how-do-you-lose.mp4">S2E23 - "How do you lose a woman?"</a></li>
+        <li><a href="#" class="clip" data-video="zac-loved-you.mp4">S2E25 - "Have I ever told you that I loved you?"</a></li>
+        <li><a href="#" class="clip" data-video="zac-cody-bubblewrap.mp4">S2E26 - Cody Bubblewrap</a></li>
+        <li><a href="#" class="clip" data-video="zac-ill-take-that-as-a-no.mp4">S3E02 - "I'll take that as a no"</a></li>
+        <li><h2>Suite Life on Deck</h2></li>
+        <li><a href="#" class="clip" data-video="deck-gimme-rock.mp4">S2E10 - "GIMME THE ROCK..."</a></li>
+        <li><a href="#" class="clip" data-video="deck-matter-opinion.mp4">S2E18 - "That's a matter of opinion"</a></li>
+
+        <!-- Add new quotes here -->
+    </ul>
+
+    <script>
+        // Store video sources
+        const videoList = [
+            "repairman.mp4",
+            "MURRWHY.mp4",
+            "zac-moesby-dive.mp4",
+            "zac-moesby-football.mp4",
+            "zac-moesby-kiss.mp4",
+            "deck-gimme-rock.mp4",
+            "deck-matter-opinion.mp4",
+            "comm-lint-licker.mp4",
+            "zac-loved-you.mp4",
+            "zac-cody-bubblewrap.mp4",
+            "zac-ill-take-that-as-a-no.mp4",
+            // Add new videos here
+        ];
+
+        // Function to create and play a new video element
+        function playVideo(src) {
+            const videoElement = document.createElement("video");
+            videoElement.src = src;
+            videoElement.controls = true;
+            videoElement.autoplay = true;
+
+            // Style the video to fill most of the screen
+            videoElement.style.position = 'fixed';
+            videoElement.style.top = '50%';
+            videoElement.style.left = '50%';
+            videoElement.style.transform = 'translate(-50%, -50%)';
+            videoElement.style.width = '75vw'; // Adjust this to change how much of the screen the video covers
+            videoElement.style.height = 'auto';
+            videoElement.style.zIndex = '9999';
+
+            // Append to the body
+            document.body.appendChild(videoElement);
+
+            // Remove video when it ends
+            videoElement.addEventListener('ended', function () {
+                videoElement.remove();
+            });
+        }
+
+        // Add click event to each quote
+        document.querySelectorAll('.clip').forEach(clip => {
+            clip.addEventListener('click', function (event) {
+                event.preventDefault();
+                const videoSrc = this.getAttribute('data-video');
+                playVideo(videoSrc);
+            });
+        });
+
+        // Play a random video on button click
+        const randomBtn = document.getElementById("random-btn");
+        randomBtn.addEventListener('click', function () {
+            const randomIndex = Math.floor(Math.random() * videoList.length);
+            const randomVideo = videoList[randomIndex];
+            playVideo(randomVideo);
+        });
+    </script>
+
+</body>
+</html>
