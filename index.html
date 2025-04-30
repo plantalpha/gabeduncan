@@ -34,6 +34,44 @@
       z-index: 0;
     }
 
+    #poetry-modal {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0,0,0,0.5);
+      z-index: 10;
+    }
+
+    #poetry-box {
+  text-align: left;
+  background: white;
+  border-radius: 8px;
+  width: 90%;
+  max-width: 300px;
+  max-height: 85vh;
+  overflow-y: auto;
+  margin: 10vh auto;
+  padding: 20px;
+  position: relative;
+  font-size: 13px;
+}
+
+    #poetry-box h2 {
+      margin-top: 0;
+    }
+
+    #poetry-close {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 20px;
+    }
+
     header {
       background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
@@ -86,11 +124,19 @@
       box-shadow: 0 0 10px rgba(0,0,0,0.1);
     }
 
-    h4, h5 {
-      font-size: 18px;
-      margin: 5px 0;
+    h5 {
+      font-size: 15px;
+      margin: 2px 0;
       font-weight: bold;
     }
+
+    h4 {
+      font-size: 10px;
+      margin: 1px 0;
+      font-weight: italic;
+      text-align: right;
+    }
+
 
     .carousel, .carousel2 {
       position: relative;
@@ -140,13 +186,55 @@
 <body>
 
 <div id="gif-overlay"></div>
+<div id="poetry-modal">
+  <div id="poetry-box">
+    <div id="poetry-close">&times;</div>
+    <h2>As I sit and Wonder</h2>
+    <h4>by Gabe Duncan (April 29th, 2025)</h4>
+    <p>If I hadn’t known<br>
+    what I had known before<br>
+    Then I would be out wrecking<br>
+    Stealing all the spoils of war<br>
+    But alas as I was gifted<br>
+    With a secret deep inside<br>
+    So instead I stay at home<br>
+    Wondering why we die</p>
+
+    <p>It’s a simple question<br>
+    But I think that I’ve heard<br>
+    It isn’t as straight forward<br>
+    Because death is like a bird<br>
+    The soul is like the air<br>
+    That supports its wings below<br>
+    And we are like the trees<br>
+    That truly never know</p>
+
+    <p>Standing firm on high<br>
+    And with the strength in fate<br>
+    Witness the ancient task<br>
+    With love we captivate<br>
+    Joy it fills the empty air<br>
+    No longer can we mourn<br>
+    For summers are no longer long<br>
+    The courts have been adjourned</p>
+
+    <p>A bird it sits upon my branch<br>
+    And wonders of my strength<br>
+    When I am you and you be me<br>
+    Then nothing will be late<br>
+    When all is one and you can see<br>
+    The prevalence of woo<br>
+    Then we can all be happy<br>
+    The confluence of You</p>
+  </div>
+</div>
 
 <header>
   <h1>Gabe Duncan</h1>
   <nav>
     <a id="music-link">Music</a>
     <a href="/cube">Cube</a>
-    <a href="/poetry">Poetry</a>
+    <a id="poetry-link">Poetry</a>
     <a href="/clips">Clips</a>
     <a href="/platypus">Platypus</a>
   </nav>
@@ -220,8 +308,31 @@
       }
       isPlaying = !isPlaying;
     });
+
+    const poetryLink = document.getElementById("poetry-link");
+    const poetryModal = document.getElementById("poetry-modal");
+    const poetryClose = document.getElementById("poetry-close");
+
+    poetryLink.addEventListener("click", function (e) {
+      e.preventDefault();
+      poetryModal.style.display = "block";
+      const poetrySound = document.getElementById("poetry-sound");
+      poetrySound.currentTime = 0;
+      poetrySound.play();
+    });
+
+    poetryClose.addEventListener("click", function () {
+      poetryModal.style.display = "none";
+    });
+
+    window.addEventListener("click", function (e) {
+      if (e.target === poetryModal) {
+        poetryModal.style.display = "none";
+      }
+    });
   });
 </script>
 
+<audio id="poetry-sound" src="Springy_Boinge.mp3"></audio>
 </body>
 </html>
