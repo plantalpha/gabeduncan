@@ -318,6 +318,7 @@
       poetryModal.style.display = "block";
       const poetrySound = document.getElementById("poetry-sound");
       poetrySound.currentTime = 0;
+      poetrySound.volume = 0.5;
       poetrySound.play();
     });
 
@@ -333,6 +334,6 @@
   });
 </script>
 
-<audio id="poetry-sound" src="Springy_Boinge.mp3"></audio>
+<audio id="poetry-sound" src="Springy_Boinge.mp3" volume="0.5"></audio>
 </body>
 </html>
