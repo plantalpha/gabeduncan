@@ -31,7 +31,7 @@
       background-size: cover;
       opacity: 0.2;
       pointer-events: none;
-      z-index: 0;
+      z-index: 2;
     }
 
     header {
@@ -42,9 +42,14 @@
       align-items: center;
       flex-wrap: wrap;
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
+    #alien-container {
+      position: relative;
+      z-index: 0; /* behind filter */
+    }
+    
     header h1 {
       font-size: 28px;
       margin: 0;
@@ -65,7 +70,7 @@
       background-color: #ccc;
       margin: 20px auto;
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
     .sticker-layout {
@@ -75,7 +80,7 @@
       flex-wrap: wrap;
       padding: 40px;
       position: relative;
-      z-index: 1;
+      z-index: 3;
     }
 
     .box, .box2 {
@@ -158,14 +163,14 @@
 </header>
 
 <!-- YouTube Previews -->
-<div style="display: flex; justify-content: center; gap: 100px; flex-wrap: wrap; padding: 30px 10px;">
-  <div style="max-width: 320px; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+<div style="display: flex; z-index: 3; justify-content: center; gap: 100px; flex-wrap: wrap; padding: 30px 10px;">
+  <div style="max-width: 320px; z-index: 3; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
     <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; margin-top: 0px; margin-bottom: 10px;">Happiness is the Key to Life, Let's Laugh Together Today</p>
     <a href="https://www.youtube.com/watch?v=jv1auJ074Dk" target="_blank" style="display: block; position: relative;">
       <img src="https://img.youtube.com/vi/jv1auJ074Dk/hqdefault.jpg" alt="Video Preview 1" style="width: 100%; border-radius: 8px; display: block;">
     </a>
   </div>
-  <div style="max-width: 320px; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
+  <div style="max-width: 320px; z-index: 3; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
     <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; margin-top: 0px; margin-bottom: 10px;">Don't Let Your Past Bog You Down, Be Authentic Today</p>
     <a href="https://www.youtube.com/watch?v=S6M9sx4Rgwc" target="_blank" style="display: block; position: relative;">
       <img src="https://img.youtube.com/vi/S6M9sx4Rgwc/hqdefault.jpg" alt="Video Preview 2" style="width: 100%; border-radius: 8px; display: block;">
@@ -187,8 +192,10 @@
     </button>
   </div>
 
-  <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeTJpOTgxeW1yamNsa3JoM2d3dmFxZGhocXg4a3gxcmQzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ii8sG1vg57dC0jJrtI/giphy.gif" alt="fun gif" class="center-gif">
-
+  <div id="alien-container">
+    <img id="alien-image" src="https://i.imgur.com/lqy0FuZ.png" alt="Frozen Alien" class="center-gif">
+  </div>
+  
   <div class="box2">
     <h5>Chocolate and Cheese Ween Boognish Sticker</h5>
     <div class="carousel2">
@@ -228,6 +235,9 @@
     const musicToggleBtn = document.getElementById("music-toggle-btn");
     const bgMusic = document.getElementById("bg-music");
     const gifOverlay = document.getElementById("gif-overlay");
+    const alienImage = document.getElementById("alien-image");
+const frozenSrc = "https://i.imgur.com/lqy0FuZ.png";
+const dancingSrc = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeTJpOTgxeW1yamNsa3JoM2d3dmFxZGhocXg4a3gxcmQzZyZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/ii8sG1vg57dC0jJrtI/giphy.gif";
     let isPlaying = false;
 
     function toggleMusic() {
@@ -235,9 +245,11 @@
         bgMusic.pause();
         bgMusic.currentTime = 0;
         gifOverlay.style.display = "none";
+        alienImage.src = frozenSrc;
       } else {
         bgMusic.play();
         gifOverlay.style.display = "block";
+        alienImage.src = dancingSrc;
       }
       isPlaying = !isPlaying;
     }
