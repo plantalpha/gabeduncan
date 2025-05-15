@@ -1,10 +1,165 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"> 
 <head>
   <meta charset="UTF-8" />
-  <title>Music</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabe Duncan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      position: relative;
+    }
+    
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+    
+    header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #298374;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+  </style>
 </head>
 <body>
-  <h1>Album Reviews Coming Soon!</h1>
+
+<header>
+  <h1>Gabe Duncan</h1>
+  <nav>
+    <a href="/videos">Videos</a>
+    <a href="/interests">Interests</a>
+    <a href="/puzzles">Puzzles</a>
+    <a href="/art">Art</a>
+    <a href="/clips">Clips</a>
+  </nav>
+</header>
+
+<section style="padding: 40px; text-align: left;">
+  <h2 style="
+    font-size: 32px;
+    font-weight: bold;
+    margin-left: 20px;
+    padding: 10px 20px;
+    background-color: rgba(255, 255, 255, 0.85);
+    display: inline-block;
+    border-radius: 8px;
+  ">
+    Gabe Studcan
+  </h2>
+
+  <div style="
+    position: relative;
+    border: 2px solid #298374;
+    border-radius: 12px;
+    margin: 20px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.9);
+  ">
+    <button id="scrollRight" style="
+      position: absolute;
+      right: 0;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 10;
+      background: white;
+      border: none;
+      font-size: 24px;
+      cursor: pointer;
+      padding: 5px 10px;
+      border-radius: 6px;
+      box-shadow: 0 0 6px rgba(0,0,0,0.1);
+    ">➡️</button>
+
+    <div id="videoCarousel" style="
+      display: flex;
+      overflow-x: auto;
+      scroll-behavior: smooth;
+      padding: 20px;
+      gap: 20px;
+    ">
+      <!-- Newest video (left) -->
+<div style="min-width: 300px; max-width: 300px; text-align: left; display: flex; flex-direction: column;">
+  <div style="height: 34px; overflow: hidden;">
+    <p style="margin: 0; font-size: 14px; font-weight: bold; line-height: 1.2;">
+      Don’t Let Your Past Bog You Down
+    </p>
+  </div>
+  <a href="https://www.youtube.com/watch?v=S6M9sx4Rgwc" target="_blank">
+    <img src="https://i.ytimg.com/an_webp/jv1auJ074Dk/mqdefault_6s.webp?du=3000&sqp=CO67mcEG&rs=AOn4CLBMRbiHKtrWzE_d_YdHMnNGaRwRgA" style="width: 100%; border-radius: 8px;">
+  </a>
+</div>
+
+<!-- Older video -->
+<div style="min-width: 300px; max-width: 300px; text-align: left; display: flex; flex-direction: column;">
+  <div style="height: 34px; overflow: hidden;">
+    <p style="margin: 0; font-size: 14px; font-weight: bold; line-height: 1.2;">
+      Happiness is the Key to Life
+    </p>
+  </div>
+  <a href="https://www.youtube.com/watch?v=jv1auJ074Dk" target="_blank">
+    <img src="https://i.ytimg.com/an_webp/S6M9sx4Rgwc/mqdefault_6s.webp?du=3000&sqp=COPBmcEG&rs=AOn4CLDhgVUN3fSoljllwhC577jMhXSGkA" style="width: 100%; border-radius: 8px;">
+  </a>
+</div>
+
+<!-- Older video -->
+<div style="min-width: 300px; max-width: 300px; text-align: left; display: flex; flex-direction: column;">
+  <div style="height: 34px; overflow: hidden;">
+    <p style="margin: 0; font-size: 14px; font-weight: bold; line-height: 1.2;">
+      Beginning my journey to help creative people and YOU
+    </p>
+  </div>
+  <a href="https://www.youtube.com/watch?v=GiYlaH_ODT4&t=1s" target="_blank">
+    <img src="https://i.ytimg.com/an_webp/GiYlaH_ODT4/mqdefault_6s.webp?du=3000&sqp=CLK6mcEG&rs=AOn4CLBxg0C1hRNMOT3BAzv1hip_0LVv0g" style="width: 100%; border-radius: 8px;">
+  </a>
+</div>
+
+
+      <!-- End message -->
+      <div style="min-width: 200px; display: flex; align-items: center; justify-content: center; font-weight: bold; font-size: 20px; background: url('https://media.tenor.com/riqP79Aw4-UAAAAe/fish.png'); border-radius: 8px; padding: 20px;">
+        That's all of them!
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<script>
+  document.getElementById("scrollRight").addEventListener("click", function () {
+    const carousel = document.getElementById("videoCarousel");
+    carousel.scrollBy({ left: 320, behavior: 'smooth' });
+  });
+</script>
+
 </body>
 </html>
