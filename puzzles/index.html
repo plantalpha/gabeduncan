@@ -1,10 +1,75 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <title>Music</title>
+<style>
+  .button-container {
+    width: 100%;
+    background-color: transparent;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+  }
+  .button {
+    width: 14.28%;
+    margin: 0.5%;
+    font-size: 24px;
+    text-align: center;
+    cursor: pointer;
+    border: 2px solid #000;
+    background-color: transparent;
+    transition: background-color 0.3s; /* Smooth transition for background color change */
+  }
+</style>
 </head>
 <body>
-  <h1>Album Reviews Coming Soon!</h1>
+
+<div class="button-container">
+  <button id="button1" class="button" style="color: #f7e948; background-color: white;">SB</button>
+  <button id="button2" class="button" style="color: #ff808b; background-color: white;">PA</button>
+  <button id="button3" class="button" style="color: #e39652; background-color: white;">SA</button>
+  <button id="button4" class="button" style="color: #ff3b3b; background-color: white;">MR</button>
+  <button id="button5" class="button" style="color: #C7E4CF; background-color: white;">SQ</button>
+  <button id="button6" class="button" style="color: #719870; background-color: white;">PL</button>
+  <button id="button7" class="button" style="color: #F2B8D0; background-color: white;">GA</button>
+</div>
+
+<script>
+  let counter = 0;
+  let order = [1, 1, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 6, 6, 6, 2, 7, 7];
+
+  let buttons = [];
+  for (let i = 1; i <= 7; i++) {
+    buttons.push(document.getElementById("button" + i));
+  }
+
+  let videoUrl = "https://www.youtube.com/watch?v=NxfR3-qJV7A?autoplay=1";
+
+  for (let i = 0; i < buttons.length; i++) {
+    buttons[i].addEventListener("click", function() {
+      if (order[counter] === i + 1) {
+        counter++;
+        buttons[i].style.backgroundColor = "#27ae60"; // Green indication for correct click
+        setTimeout(() => {
+          buttons[i].style.backgroundColor = "white"; // Reset button color after a moment
+        }, 300);
+        if (counter === order.length) {
+          window.open(videoUrl, "_blank");
+        }
+      } else {
+        counter = 0;
+        buttons.forEach(button => {
+          button.style.backgroundColor = "black"; // Change all buttons to black for a second
+        });
+        setTimeout(() => {
+          buttons.forEach(button => {
+            button.style.backgroundColor = "white"; // Reset button colors after a second
+          });
+        }, 1000);
+      }
+    });
+  }
+</script>
+
 </body>
 </html>
