@@ -1,37 +1,103 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<style>
-  .button-container {
-    width: 100%;
-    background-color: transparent;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    align-content: center;
-  }
-  .button {
-    width: 14.28%;
-    margin: 0.5%;
-    font-size: 24px;
-    text-align: center;
-    cursor: pointer;
-    border: 2px solid #000;
-    background-color: transparent;
-    transition: background-color 0.3s; /* Smooth transition for background color change */
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Puzzles - Gabe Duncan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      position: relative;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #298374;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    .button-container {
+      width: 100%;
+      background-color: transparent;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-content: center;
+      margin-top: 40px;
+    }
+
+    .button {
+      width: 14.28%;
+      margin: 0.5%;
+      font-size: 24px;
+      text-align: center;
+      cursor: pointer;
+      border: 2px solid #000;
+      background-color: white;
+      transition: background-color 0.3s;
+    }
+  </style>
 </head>
 <body>
 
+<header>
+  <h1><a href="/">Gabe Duncan</a></h1>
+  <nav>
+    <a href="/videos">Videos</a>
+    <a href="/interests">Interests</a>
+    <a href="/puzzles">Puzzles</a>
+    <a href="/art">Art</a>
+    <a href="/clips">Clips</a>
+  </nav>
+</header>
+
 <div class="button-container">
-  <button id="button1" class="button" style="color: #f7e948; background-color: white;">SB</button>
-  <button id="button2" class="button" style="color: #ff808b; background-color: white;">PA</button>
-  <button id="button3" class="button" style="color: #e39652; background-color: white;">SA</button>
-  <button id="button4" class="button" style="color: #ff3b3b; background-color: white;">MR</button>
-  <button id="button5" class="button" style="color: #C7E4CF; background-color: white;">SQ</button>
-  <button id="button6" class="button" style="color: #719870; background-color: white;">PL</button>
-  <button id="button7" class="button" style="color: #F2B8D0; background-color: white;">GA</button>
+  <button id="button1" class="button" style="color: #f7e948;">SB</button>
+  <button id="button2" class="button" style="color: #ff808b;">PA</button>
+  <button id="button3" class="button" style="color: #e39652;">SA</button>
+  <button id="button4" class="button" style="color: #ff3b3b;">MR</button>
+  <button id="button5" class="button" style="color: #C7E4CF;">SQ</button>
+  <button id="button6" class="button" style="color: #719870;">PL</button>
+  <button id="button7" class="button" style="color: #F2B8D0;">GA</button>
 </div>
 
 <script>
@@ -49,9 +115,9 @@
     buttons[i].addEventListener("click", function() {
       if (order[counter] === i + 1) {
         counter++;
-        buttons[i].style.backgroundColor = "#27ae60"; // Green indication for correct click
+        buttons[i].style.backgroundColor = "#27ae60"; // Green
         setTimeout(() => {
-          buttons[i].style.backgroundColor = "white"; // Reset button color after a moment
+          buttons[i].style.backgroundColor = "white";
         }, 300);
         if (counter === order.length) {
           window.open(videoUrl, "_blank");
@@ -59,11 +125,11 @@
       } else {
         counter = 0;
         buttons.forEach(button => {
-          button.style.backgroundColor = "black"; // Change all buttons to black for a second
+          button.style.backgroundColor = "black";
         });
         setTimeout(() => {
           buttons.forEach(button => {
-            button.style.backgroundColor = "white"; // Reset button colors after a second
+            button.style.backgroundColor = "white";
           });
         }, 1000);
       }
