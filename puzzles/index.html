@@ -75,6 +75,53 @@
       background-color: white;
       transition: background-color 0.3s;
     }
+    
+    
+    .circle {
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  display: inline-block;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.red {
+  background-color: red;
+}
+.blue {
+  background-color: blue;
+}
+.yellow {
+  background-color: yellow;
+}
+.green {
+  background-color: green;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.color-puzzle-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  animation: rotate 10s linear infinite;
+  width: 400px;
+  height: 200px;
+  margin: 100px auto;
+  overflow: hidden;
+  position: relative;
+}
+
+    
+    
   </style>
 </head>
 <body>
@@ -99,6 +146,16 @@
   <button id="button6" class="button" style="color: #719870;">PL</button>
   <button id="button7" class="button" style="color: #F2B8D0;">GA</button>
 </div>
+
+
+<div class="color-puzzle-container">
+  <button class="circle red" id="red"></button>
+  <button class="circle blue" id="blue"></button>
+  <button class="circle yellow" id="yellow"></button>
+  <button class="circle green" id="green"></button>
+</div>
+
+
 
 <script>
   let counter = 0;
@@ -135,6 +192,33 @@
       }
     });
   }
+  
+  var red = document.getElementById("red");
+  var blue = document.getElementById("blue");
+  var yellow = document.getElementById("yellow");
+  var green = document.getElementById("green");
+
+  var colorOrder = ["red", "red", "blue", "blue", "yellow", "green", "yellow", "green"];
+  var input = [];
+
+  red.addEventListener("click", () => { input.push("red"); checkColorOrder(); });
+  blue.addEventListener("click", () => { input.push("blue"); checkColorOrder(); });
+  yellow.addEventListener("click", () => { input.push("yellow"); checkColorOrder(); });
+  green.addEventListener("click", () => { input.push("green"); checkColorOrder(); });
+
+  function checkColorOrder() {
+    let i = input.length - 1;
+    if (input[i] !== colorOrder[i]) {
+      input = [];
+      alert("Wrong order!");
+      return;
+    }
+    if (input.length === colorOrder.length) {
+      window.open("https://www.youtube.com/watch?v=_Tss7PgG9eA", "_blank", "width=1600,height=1200");
+    }
+  }
+  
+  
 </script>
 
 </body>
