@@ -2,10 +2,246 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>3D Cube</title>
-  <style>canvas { display: block; }</style>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bouncing Ball with Rocks - Gabe Duncan</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      font-family: 'Segoe UI', sans-serif;
+      color: #333;
+      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
+    }
+
+    header {
+      background-color: rgba(255, 255, 255, 0.8);
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      position: sticky;
+      top: 0;
+      z-index: 3;
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 0;
+    }
+
+    header h1 a {
+      text-decoration: none;
+      color: #333;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #298374;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    nav a:hover {
+      text-decoration: underline;
+    }
+
+    #ball {
+      border-radius: 50%;
+      position: absolute;
+      background: radial-gradient(circle at 30% 30%, #ff69b4, #8a2be2);
+      box-shadow: 0 0 20px 5px #fff;
+      z-index: 1;
+    }
+
+    .rock {
+      position: absolute;
+      background-color: rgba(100, 100, 100, 0.8);
+      border: 2px solid #444;
+      z-index: 1;
+      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    }
+
+    #controls {
+      position: fixed;
+      bottom: 10px;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgba(255,255,255,0.85);
+      padding: 10px 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.3);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      z-index: 4;
+    }
+
+    #controls button {
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      background-color: #298374;
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    #controls button:hover {
+      background-color: #1f5e53;
+    }
+  </style>
 </head>
 <body>
-  <script type="module" src="cube.js"></script>
+
+<header id="main-header">
+  <h1><a href="/">Gabe Duncan</a></h1>
+  <nav>
+    <a href="/videos">Videos</a>
+    <a href="/interests">Interests</a>
+    <a href="/puzzles">Puzzles</a>
+    <a href="/art">Art</a>
+    <a href="/clips">Clips</a>
+  </nav>
+</header>
+
+<div id="ball"></div>
+
+<div id="controls">
+  <button onclick="speedUp()">Speed +</button>
+  <button onclick="slowDown()">Speed -</button>
+  <button onclick="grow()">Size +</button>
+  <button onclick="shrink()">Size -</button>
+  <button onclick="addRock()">Add Rock</button>
+  <button onclick="clearRocks()">Clear Rocks</button>
+</div>
+
+<script>
+  const ball = document.getElementById('ball');
+  const header = document.getElementById('main-header');
+  const colors = [
+    ['#ff69b4', '#8a2be2'],
+    ['#00ffff', '#0000ff'],
+    ['#ffff00', '#ff4500'],
+    ['#7fff00', '#ff00ff'],
+    ['#ff6347', '#00fa9a']
+  ];
+
+  let x = 100, y = 150;
+  let dx = 2, dy = 2;
+  let size = 80;
+  let colorIndex = 0;
+  const rocks = [];
+
+  function updateBall() {
+    const screenWidth = window.innerWidth;
+    const screenHeight = window.innerHeight;
+    const headerHeight = header.offsetHeight;
+
+    x += dx;
+    y += dy;
+
+    // Wall collisions
+    if (x + size >= screenWidth || x <= 0) {
+      dx *= -1;
+      changeColor();
+    }
+
+    // Header collision
+    if (y <= headerHeight && dy < 0) {
+      dy *= -1;
+      changeColor();
+    }
+
+    // Bottom wall
+    if (y + size >= screenHeight) {
+      dy *= -1;
+      changeColor();
+    }
+
+    // Rock collisions
+    rocks.forEach(rock => {
+      const bx = x + size / 2;
+      const by = y + size / 2;
+
+      if (
+        bx + size / 2 > rock.x &&
+        bx - size / 2 < rock.x + rock.size &&
+        by + size / 2 > rock.y &&
+        by - size / 2 < rock.y + rock.size
+      ) {
+        dx *= -1;
+        dy *= -1;
+        changeColor();
+      }
+    });
+
+    ball.style.left = x + 'px';
+    ball.style.top = y + 'px';
+    ball.style.width = size + 'px';
+    ball.style.height = size + 'px';
+
+    requestAnimationFrame(updateBall);
+  }
+
+  function changeColor() {
+    colorIndex = (colorIndex + 1) % colors.length;
+    const [start, end] = colors[colorIndex];
+    ball.style.background = `radial-gradient(circle at 30% 30%, ${start}, ${end})`;
+    ball.style.boxShadow = `0 0 20px 5px ${end}`;
+  }
+
+  function speedUp() {
+    dx *= 1.2;
+    dy *= 1.2;
+  }
+
+  function slowDown() {
+    dx *= 0.8;
+    dy *= 0.8;
+  }
+
+  function grow() {
+    size = Math.min(size + 10, 200);
+  }
+
+  function shrink() {
+    size = Math.max(size - 10, 30);
+  }
+
+  function addRock() {
+    const rock = document.createElement('div');
+    rock.classList.add('rock');
+    const rSize = Math.floor(Math.random() * 40 + 30);
+    const x = Math.random() * (window.innerWidth - rSize);
+    const y = Math.random() * (window.innerHeight - rSize - header.offsetHeight) + header.offsetHeight;
+
+    rock.style.left = `${x}px`;
+    rock.style.top = `${y}px`;
+    rock.style.width = `${rSize}px`;
+    rock.style.height = `${rSize}px`;
+
+    document.body.appendChild(rock);
+    rocks.push({ element: rock, x, y, size: rSize });
+  }
+
+  function clearRocks() {
+    rocks.forEach(rock => rock.element.remove());
+    rocks.length = 0;
+  }
+
+  updateBall();
+</script>
+
 </body>
 </html>
