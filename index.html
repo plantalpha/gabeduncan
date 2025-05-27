@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gabe Duncan</title>
+  <link href="https://fonts.cdnfonts.com/css/spongebob-font-condensed" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/pathway-extreme" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -53,6 +55,7 @@
     header h1 {
       font-size: 28px;
       margin: 0;
+      text-decoration:none;
     }
 
     nav a {
@@ -104,10 +107,6 @@
       text-align: right;
     }
 
-    h1 {
-      text-decoration:none;
-    }
-
     .carousel, .carousel2 {
       position: relative;
       width: 100%;
@@ -151,6 +150,38 @@
       max-width: 300px;
       height: auto;
     }
+
+    .welcome-box {
+      margin: 30px auto;
+      padding: 20px 40px;
+      max-width: 600px;
+      background: linear-gradient(145deg, #ffffff, #dcdcdc);
+      border-radius: 12px;
+      box-shadow: inset 4px 4px 8px #c0c0c0,
+              inset -4px -4px 8px #ffffff,
+              0 4px 12px rgba(0,0,0,0.15);
+      z-index: 3;
+      position: relative;
+    }
+
+    .welcome-box h2 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+      text-shadow: 1px 1px 0 #fff;
+    }
+
+    h2 {
+    font-family: 'SpongeBob Font Condensed', sans-serif;
+    font-size: 20px;
+
+    }
+
+
+    p {
+    font-family: 'Pathway Extreme', sans-serif;
+    }
+    
   </style>
 </head>
 <body>
@@ -168,22 +199,6 @@
   </nav>
 </header>
 
-<!-- YouTube Previews -->
-<div style="display: flex; z-index: 3; justify-content: center; gap: 100px; flex-wrap: wrap; padding: 30px 10px;">
-  <div style="max-width: 320px; z-index: 3; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-    <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; margin-top: 0px; margin-bottom: 10px;">Happiness is the Key to Life, Let's Laugh Together Today</p>
-    <a href="https://www.youtube.com/watch?v=jv1auJ074Dk" target="_blank" style="display: block; position: relative;">
-      <img src="https://img.youtube.com/vi/jv1auJ074Dk/hqdefault.jpg" alt="Video Preview 1" style="width: 100%; border-radius: 8px; display: block;">
-    </a>
-  </div>
-  <div style="max-width: 320px; z-index: 3; text-align: left; background: rgba(255,255,255,0.85); padding: 20px; border-radius: 12px; box-shadow: 0 4px 15px rgba(0,0,0,0.2);">
-    <p style="font-family: 'Segoe UI', sans-serif; font-weight: bold; margin-top: 0px; margin-bottom: 10px;">Don't Let Your Past Bog You Down, Be Authentic Today</p>
-    <a href="https://www.youtube.com/watch?v=S6M9sx4Rgwc" target="_blank" style="display: block; position: relative;">
-      <img src="https://img.youtube.com/vi/S6M9sx4Rgwc/hqdefault.jpg" alt="Video Preview 2" style="width: 100%; border-radius: 8px; display: block;">
-    </a>
-  </div>
-</div>
-
 <div class="sticker-layout">
   <div class="box">
     <h5>Europe '72 x Ween Boognish Sticker</h5>
@@ -198,9 +213,10 @@
     </button>
   </div>
 
-  <div id="alien-container">
-    <img id="alien-image" src="https://i.imgur.com/lqy0FuZ.png" alt="Frozen Alien" class="center-gif">
-  </div>
+<div class="welcome-box">
+  <h2>Welcome to my site!</h2>
+  <p>Sign up for <a href="/creativespotlight">The Creative Spotlight</a><br>and enjoy yerself!!!</br><img src="https://www.animatedimages.org/data/media/113/animated-pirate-image-0005.gif"></p>
+</div>
   
   <div class="box2">
     <h5>Chocolate and Cheese Ween Boognish Sticker</h5>
@@ -215,6 +231,10 @@
     </button>
   </div>
 </div>
+
+<div id="alien-container">
+    <img id="alien-image" src="https://i.imgur.com/lqy0FuZ.png" alt="Frozen Alien" class="center-gif">
+  </div>
 
 <audio id="bg-music" src="Slowmedownbubbleboy.WAV" loop></audio>
 
