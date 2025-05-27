@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gabe Duncan</title>
   <link href="https://fonts.cdnfonts.com/css/spongebob-font-condensed" rel="stylesheet">
-  <link href="https://fonts.cdnfonts.com/css/pathway-extreme" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tilt-warp" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -100,13 +100,6 @@
       font-weight: bold;
     }
 
-    h4 {
-      font-size: 10px;
-      margin: 1px 0;
-      font-weight: italic;
-      text-align: right;
-    }
-
     .carousel, .carousel2 {
       position: relative;
       width: 100%;
@@ -173,13 +166,12 @@
 
     h2 {
     font-family: 'SpongeBob Font Condensed', sans-serif;
-    font-size: 20px;
-
     }
 
 
     p {
-    font-family: 'Pathway Extreme', sans-serif;
+    font-family: 'Tilt Warp', sans-serif;
+    font-size: 28px;
     }
     
   </style>
@@ -214,8 +206,10 @@
   </div>
 
 <div class="welcome-box">
-  <h2>Welcome to my site!</h2>
-  <p>Sign up for <a href="/creativespotlight">The Creative Spotlight</a><br>and enjoy yerself!!!</br><img src="https://www.animatedimages.org/data/media/113/animated-pirate-image-0005.gif"></p>
+  <h2 style="font-size: 40px;">Welcome to my site!</h2>
+  <p>Sign up for <a href="/creativespotlight">The Creative Spotlight</a><br>and enjoy yerself!!!</br></p>
+  <audio id="pirate-sound" src="arrgh.mp3"></audio>
+<img id="pirate-skull" src="https://www.animatedimages.org/data/media/113/animated-pirate-image-0005.gif" style="cursor: pointer; max-width: 150px;" alt="Pirate Skull">
 </div>
   
   <div class="box2">
@@ -238,7 +232,17 @@
 
 <audio id="bg-music" src="Slowmedownbubbleboy.WAV" loop></audio>
 
-<img id="music-toggle-btn" src="https://i.imgur.com/AI2yEdR.png" alt="Toggle Music" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1000;">
+<img id="music-toggle-btn" src="https://i.imgur.com/AI2yEdR.png" alt="Toggle Music" 
+style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1000;">
+
+<div id="pirate-dialog" style="display:none; position: fixed; top: 30%; left: 50%; 
+transform: translate(-50%, -30%); background: #fff; border: 3px solid #444; padding: 30px; 
+z-index: 9999; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); font-family: 'SpongeBob Font Condensed', sans-serif; 
+background: url('https://i.imgflip.com/5dopty.jpg?a485208') no-repeat center center fixed; background-size: cover;">
+  <p style="font-size: 20px; font-family: 'SpongeBob Font Condensed', sans-serif; color: #ffffff;">Do you want to become a real pirate?</p>
+  <button onclick="closePirateDialog()" style="margin-right: 20px; font-family: 'SpongeBob Font Condensed', sans-serif;">Nay.</button>
+  <button onclick="becomePirate()" style="margin-right: 20px; font-family: 'SpongeBob Font Condensed', sans-serif;">Aigh!</button>
+</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
@@ -282,6 +286,34 @@ const dancingSrc = "https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExaXJ0a3gxeT
 
     musicToggleBtn.addEventListener("click", toggleMusic);
   });
+
+  let pirateClicks = 0;
+let clickTimer;
+
+document.getElementById("pirate-skull").addEventListener("click", function () {
+  const sound = document.getElementById("pirate-sound");
+  sound.currentTime = 0;
+  sound.play();
+
+  pirateClicks++;
+  clearTimeout(clickTimer);
+  clickTimer = setTimeout(() => { pirateClicks = 0; }, 1000);
+
+  if (pirateClicks >= 6) {
+    document.getElementById("pirate-dialog").style.display = "block";
+    pirateClicks = 0;
+  }
+});
+
+function closePirateDialog() {
+  document.getElementById("pirate-dialog").style.display = "none";
+}
+
+function becomePirate() {
+  window.open("https://www.youtube.com/watch?v=avMX-Zft7K4", "_blank");
+  closePirateDialog();
+}
+
 </script>
 
 </body>
