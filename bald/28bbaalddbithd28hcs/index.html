@@ -3,24 +3,30 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Scrolling Image Popups</title>
+  <title>balds</title>
   <style>
     body {
       margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
       font-family: 'Segoe UI', sans-serif;
-      background: #f0f0f0;
-      overflow-x: hidden;
+      color: #333;
+      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background-size: cover;
+      overflow: hidden;
     }
 
     header {
-      background-color: #ffffffcc;
+      background-color: rgba(255, 255, 255, 0.8);
       padding: 20px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      flex-wrap: wrap;
       position: sticky;
       top: 0;
-      z-index: 10;
+      z-index: 3;
     }
 
     header h1 a {
@@ -145,7 +151,7 @@ const imageData = [
   // Row 1
   {
     id: "img1",
-    imageSrc: "https://i.imgur.com/nTE4QKL.png",
+    imageSrc: "https://static.wikia.nocookie.net/villains/images/5/54/Cockywantboingboing.png/revision/latest/scale-to-width/360?cb=20250416010704",
     popupImage: "https://i.imgur.com/nTE4QKL.png",
     title: "Alien Hat",
     description: "An alien with a mysterious hat appears on Earth.",
