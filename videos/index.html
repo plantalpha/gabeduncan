@@ -76,6 +76,7 @@
   </nav>
 </header>
 
+<!-- Gabe Studcan -->
 <section style="padding: 40px; text-align: left;">
   <h2 style="
     font-size: 32px;
@@ -97,20 +98,20 @@
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
   ">
-    <button id="scrollRight" style="
+    <button class="scrollRight" style="
       position: absolute;
       right: 0;
       top: 50%;
       transform: translateY(-50%);
       z-index: 10;
-      background: white;
+      background: rgba(255, 255, 255, 0);
       border: none;
       font-size: 24px;
       cursor: pointer;
       padding: 5px 10px;
       border-radius: 6px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    ">➡️</button>
+    "><img src="https://wallpapers.com/images/featured/right-arrow-png-gz9b00bbbt8krd2l.jpg" alt="Right Arrow" style="width: 24px; height: 24px;">
+    </button>
 
     <div id="videoCarousel" style="
       display: flex;
@@ -318,20 +319,20 @@
     overflow: hidden;
     background-color: rgba(255, 255, 255, 0.9);
   ">
-    <button id="scrollRight" style="
+    <button class="scrollRight" style="
       position: absolute;
       right: 0;
       top: 50%;
       transform: translateY(-50%);
       z-index: 10;
-      background: white;
+      background: rgba(255, 255, 255, 0);
       border: none;
       font-size: 24px;
       cursor: pointer;
       padding: 5px 10px;
       border-radius: 6px;
-      box-shadow: 0 0 6px rgba(0,0,0,0.1);
-    ">➡️</button>
+    "><img src="https://wallpapers.com/images/featured/right-arrow-png-gz9b00bbbt8krd2l.jpg" alt="Right Arrow" style="width: 24px; height: 24px;">
+    </button>
 
     <div id="videoCarousel" style="
       display: flex;
@@ -418,14 +419,14 @@
 
 
 <script>
-  document.getElementById("scrollRight").addEventListener("click", function () {
-    const carousel = document.getElementById("videoCarousel");
-    carousel.scrollBy({ left: 320, behavior: 'smooth' });
+  document.querySelectorAll(".scrollRight").forEach(button => {
+  button.addEventListener("click", function () {
+    const carousel = this.nextElementSibling;
+    if (carousel && carousel.scrollBy) {
+      carousel.scrollBy({ left: 320, behavior: 'smooth' });
+    }
   });
-  
-  a:hover img:last-child; {
-  opacity: 1;
-}
+});
   
 </script>
 
