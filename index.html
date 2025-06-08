@@ -232,18 +232,18 @@
 
 <!-- Secret password dialog -->
 <div id="bald-dialog" style="display:none; position: fixed; top: 30%; left: 50%;
-transform: translate(-50%, -30%); background: #fff; border: 3px solid #444; padding: 30px;
-z-index: 9999; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); font-family: sans-serif;">
-  <p style="font-size: 18px;">Password:</p>
-  <input type="text" id="bald-password" style="font-size: 16px; padding: 5px;" />
-  <div style="margin-top: 10px;">
-    <button onclick="submitBaldPassword()">Enter</button>
+transform: translate(-50%, -30%); width: 400px; background: linear-gradient(#5e3a1d, #3a230f); border: 5px solid #2d1b0e; padding: 30px;
+z-index: 9999; border-radius: 12px; box-shadow: inset 0 0 10px #2b1a0b, 0 0 20px rgba(0,0,0,0.5); font-family: 'Georgia', serif; color: #fff;">
+  <p style="font-size: 20px;">Password:</p>
+  <input type="text" id="bald-password" style="font-size: 18px; padding: 6px; width: 100%;" />
+  <div style="margin-top: 15px;">
+    <button onclick="submitBaldPassword()" style="margin-right: 10px;">Enter</button>
     <button onclick="closeBaldDialog()">Cancel</button>
   </div>
 </div>
 
 <!-- Audio -->
-<audio id="jingle-sound" src="audio/jingle.mp3"></audio>
+<audio id="jingle-sound" src="audio/jingle.wav"></audio>
 <audio id="bald-sound" src="audio/bald.mp3"></audio>
 <audio id="wrong-sound" src="audio/wrong.mp3"></audio>
 
@@ -331,15 +331,26 @@ function becomePirate() {
   closePirateDialog();
 }
 
-document.getElementById("alien-image").addEventListener("click", function () {
-  const jingle = document.getElementById("jingle-sound");
-  jingle.currentTime = 0;
-  jingle.play();
-  setTimeout(() => {
+// Set all volumes to 70%
+document.getElementById("jingle-sound").volume = 0.3;
+document.getElementById("bald-sound").volume = 0.5;
+document.getElementById("wrong-sound").volume = 0.5;
+
+// Show the password dialog immediately when holding for 3s
+let holdTimer;
+
+const alien = document.getElementById("alien-image");
+alien.addEventListener("mousedown", () => {
+  holdTimer = setTimeout(() => {
     document.getElementById("bald-dialog").style.display = "block";
     document.getElementById("bald-password").focus();
-  }, 300); // small delay so jingle plays first
+    document.getElementById("jingle-sound").currentTime = 0;
+    document.getElementById("jingle-sound").play();
+  }, 1969); // 3 second hold
 });
+
+alien.addEventListener("mouseup", () => clearTimeout(holdTimer));
+alien.addEventListener("mouseleave", () => clearTimeout(holdTimer));
 
 function closeBaldDialog() {
   document.getElementById("bald-dialog").style.display = "none";
@@ -352,13 +363,15 @@ function submitBaldPassword() {
   const wrongSound = document.getElementById("wrong-sound");
 
   if (input === "bald") {
-    closeBaldDialog();
+    document.getElementById("bald-dialog").style.display = "none";
+    document.getElementById("bald-password").value = "";
+    baldSound.currentTime = 0;
     baldSound.play();
     baldSound.onended = function () {
       window.open("https://gabeduncan.com/bald/28bbaalddbithd28hcs", "_blank");
     };
   } else {
-    closeBaldDialog();
+    wrongSound.currentTime = 0;
     wrongSound.play();
   }
 }
