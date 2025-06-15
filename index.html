@@ -181,6 +181,11 @@
 
 <header>
   <h1><a href="/">Gabe Duncan</a></h1>
+
+  <iframe src="attributes/search.html"
+        style="width: 100%; max-width: 420px; height: 60px; border: none; overflow: visible; z-index: 999;"
+        scrolling="no"></iframe>
+
   <nav>
     <a href="/creativespotlight">The Creative Spotlight</a>
     <a href="/videos">Videos</a>
@@ -376,6 +381,17 @@ function submitBaldPassword() {
   }
 }
 
+</script>
+
+<script>
+  window.addEventListener("message", function(event) {
+    if (event.data?.type === "resize-search") {
+      const iframe = document.querySelector("iframe[src*='search.html']");
+      if (iframe) {
+        iframe.style.height = `${event.data.height}px`;
+      }
+    }
+  });
 </script>
 
 </body>

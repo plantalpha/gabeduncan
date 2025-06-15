@@ -1,0 +1,107 @@
+<style>
+  .search-container {
+    position: relative;
+    width: 100%;
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 6px;
+    font-family: 'Tilt Warp', sans-serif;
+  }
+
+  #searchBox {
+    width: 100%;
+    padding: 10px 16px;
+    border-radius: 25px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: white;
+    background-image: url('https://png.pngtree.com/png-clipart/20230811/original/pngtree-small-flower-icon-floral-pink-green-vector-picture-image_10347683.png');
+    background-repeat: repeat;
+    background-size: 25px;
+    background-position: center;
+    background-blend-mode: lighten;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    outline: none;
+  }
+
+  #suggestions {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: white;
+    border-radius: 0 0 12px 12px;
+    box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+    max-height: 200px;
+    overflow-y: auto;
+    z-index: 9999;
+    display: none;
+  }
+
+  #suggestions li {
+    padding: 10px 14px;
+    cursor: pointer;
+    border-bottom: 1px solid #eee;
+    transition: background-color 0.2s ease;
+  }
+
+  #suggestions li:hover {
+    background-color: #f5f5f5;
+  }
+</style>
+
+<div class="search-container">
+  <input type="text" id="searchBox" placeholder="Search my site...">
+  <ul id="suggestions"></ul>
+</div>
+
+<script>
+  const pages = [
+    { name: "Penguins", url: "/penguins.html" },
+    { name: "Ween Lore", url: "/ween.html" },
+    { name: "Alien Archives", url: "/aliens.html" },
+    { name: "The Boognish", url: "/boognish.html" },
+    { name: "Space", url: "/space.html" },
+    { name: "Gabe Facts", url: "/gabefacts.html" }
+  ];
+
+  document.addEventListener("DOMContentLoaded", () => {
+    const searchBox = document.getElementById("searchBox");
+    const suggestions = document.getElementById("suggestions");
+
+    searchBox.addEventListener("input", () => {
+      const query = searchBox.value.toLowerCase();
+      suggestions.innerHTML = "";
+
+      if (!query) {
+        suggestions.style.display = "none";
+        return;
+      }
+
+      const matches = pages.filter(p => p.name.toLowerCase().includes(query));
+
+      if (matches.length > 0) {
+        matches.forEach(p => {
+          const li = document.createElement("li");
+          li.textContent = p.name;
+          li.onclick = () => {
+            window.location.href = p.url;
+          };
+          suggestions.appendChild(li);
+        });
+        suggestions.style.display = "block";
+      } else {
+        suggestions.style.display = "none";
+      }
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!e.target.closest(".search-container")) {
+        suggestions.style.display = "none";
+      }
+    });
+  });
+</script>
