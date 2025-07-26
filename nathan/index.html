@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Scaled GIF on Background</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      height: 100%;
+      width: 100%;
+      background: url('https://static1.thegamerimages.com/wordpress/wp-content/uploads/2021/08/Minecraft-Nether-Wastes.jpg') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    img {
+      width: 50vw;   /* scale to 90% of viewport width */
+      height: auto;
+      image-rendering: pixelated; /* keeps the 'crunchy' look instead of blurring */
+    }
+  </style>
+</head>
+<body>
+  <img src="https://i.pinimg.com/originals/08/ea/e8/08eae8151619fd8a54f460a3328bb46a.gif" alt="Staring Meme GIF">
+</body>
+</html>
