@@ -181,11 +181,6 @@
 
 <header>
   <h1><a href="/">Gabe Duncan</a></h1>
-
-  <iframe src="attributes/search.html"
-        style="width: 100%; max-width: 420px; height: 60px; border: none; overflow: visible; z-index: 999;"
-        scrolling="no"></iframe>
-
   <nav>
     <a href="/creativespotlight">The Creative Spotlight</a>
     <a href="/videos">Videos</a>
@@ -211,8 +206,82 @@
   </div>
 
 <div class="welcome-box">
-  <h2 style="font-size: 40px;">Welcome to my site!</h2>
-  <p>Sign up for <a href="/creativespotlight">The Creative Spotlight</a><br>and enjoy yerself!!!</br></p>
+  <h2 style="font-size: 40px;">Nathan tells all...</h2>
+
+  <div class="video-player-box">
+  <div class="video-thumbnail" onclick="playVideo()">
+    <img src="https://i.imgur.com/qJuyw7W.png" alt="Video thumbnail">
+    <div class="play-button" style="width: 200px; height: 200px;">
+      <img src="https://static.vecteezy.com/system/resources/previews/014/396/445/non_2x/comic-style-triangle-play-icon-with-transparent-background-file-free-png.png" 
+       alt="Video thumbnail" 
+       style="width: 100%; height: 100%;">
+    </div>
+
+  </div>
+  <div id="youtube-frame-container" style="display: none;"></div>
+</div>
+
+<style>
+.video-player-box {
+  max-width: 700px;
+  margin: 20px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(0,0,0,0.5);
+  backdrop-filter: blur(10px);
+  background: rgba(255,255,255,0.1);
+}
+
+.video-thumbnail {
+  position: relative;
+  cursor: pointer;
+}
+
+.video-thumbnail img {
+  max-height: 400px;
+  width: 400px;
+  height: 400px;
+  border-radius: 16px;
+}
+
+.play-button {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0,0,0,0.6);
+  border-radius: 50%;
+  padding: 20px 25px;
+  font-size: 40px;
+  color: white;
+  transition: background 0.3s;
+}
+
+.play-button:hover {
+  background: rgba(255,255,255,0.3);
+}
+</style>
+
+<script>
+function playVideo() {
+  const container = document.getElementById("youtube-frame-container");
+  container.style.display = "block";
+  container.innerHTML = `
+    <iframe width="400px" height="400px" 
+      src="https://www.youtube.com/embed/RNGe5X9zSLM?autoplay=1&rel=0" 
+      frameborder="0" allow="autoplay; encrypted-media" allowfullscreen>
+    </iframe>`;
+  document.querySelector(".video-thumbnail").style.display = "none";
+}
+</script>
+
+
+
+
+
+
+
   <audio id="pirate-sound" src="arrgh.WAV"></audio>
 <img id="pirate-skull" src="https://www.animatedimages.org/data/media/113/animated-pirate-image-0005.gif" style="cursor: pointer; max-width: 150px;" alt="Pirate Skull">
 </div>
@@ -277,7 +346,7 @@ background: url('https://i.imgflip.com/5dopty.jpg?a485208') no-repeat center cen
         images[current].classList.remove("active");
         current = (current + 1) % images.length;
         images[current].classList.add("active");
-      }, 3000);
+      }, 5000);
     }
 
     setupCarousel(".carousel");
