@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meditation App - Login</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="pillar left"></div>
+  <div class="pillar right"></div>
+
+  <div class="app">
+    <!-- Tab bar -->
+    <div class="tab-bar">
+      <a class="tab" href="login.html">Login</a>
+      <a class="tab" data-tab="spin" href="spin.html">Spin</a>
+      <a class="tab" data-tab="collection" href="collection.html">Collection</a>
+      <a class="tab" data-tab="stats" href="stats.html">Stats</a>
+      <a class="tab" data-tab="settings" href="settings.html">Settings</a>
+      <div class="close-btn" onclick="openLogoutModal()">X</div>
+    </div>
+
+    <!-- Content -->
+    <div class="content login-screen">
+      <h1 class="login-title">Login</h1>
+      <div class="login-box">
+        <input type="text" id="username" placeholder="Enter username">
+        <input type="password" id="password" placeholder="Enter password">
+        <button onclick="dummyLogin()">Login</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Logout Confirmation Modal -->
+  <div id="logout-modal" class="modal hidden">
+    <div class="modal-content">
+      <p>Are you sure you want to leave?</p>
+      <div class="modal-buttons">
+        <button onclick="confirmLogout()">Yes</button>
+        <button onclick="closeLogoutModal()">No</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Login animations -->
+  <div id="confetti" class="confetti hidden">
+    <img src="assets/confetti.gif" alt="confetti">
+  </div>
+  <div id="error-mark" class="error-mark hidden">
+    <img src="assets/fail-x.png" alt="error">
+  </div>
+
+  <audio id="yay-sound" src="assets/yay.mp3"></audio>
+  <audio id="noo-sound" src="assets/noo.mp3"></audio>
+
+  <script src="app.js"></script>
+</body>
+</html>
