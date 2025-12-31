@@ -1,13 +1,10 @@
 {
-  "title": "2026-01-01",
+  "title": "test title",
   "tasks": [
-    "take in the new year",
-    "drinka  gallon of water",
-    "no nic",
-    "test"
+    "Drink water",
+    "Move body (10\u201330 min)",
+    "Make something (music/video/code)"
   ],
-  "notesHtml": "lets goooooo new year!!!",
-  "photos": [
-    "https://purepng.com/public/uploads/large/purepng.com-madagascar-penguinmadagascar-penguinsmadagascarpenguinscgiamericantelevision-seriesdreamworksanimationpenguins-skipper-1701528623156tvmwc.png"
-  ]
+  "notesHtml": "test",
+  "photos": []
 }
