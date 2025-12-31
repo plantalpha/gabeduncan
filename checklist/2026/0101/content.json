@@ -1,14 +1,12 @@
 {
-  "title": "test title",
+  "title": "day 2",
   "tasks": [
-    "Drink a gallon of water",
+    "Drink water",
     "Move body (10\u201330 min)",
-    "SPIRTUAL TIME!!!",
-    "Make something (music/video/code)",
-    "BE A GOOOD PERSON"
+    "Make something (music/video/code)"
   ],
-  "notesHtml": "test\n\ntest editing\n\n<b>BOLD</b>",
+  "notesHtml": "",
   "photos": [
-    "https://purepng.com/public/uploads/large/purepng.com-madagascar-penguinmadagascar-penguinsmadagascarpenguinscgiamericantelevision-seriesdreamworksanimationpenguins-skipper-1701528623156tvmwc.png"
+    "https://www.nationaldaycalendar.com/.image/ar_233:100%2Cc_fill%2Ccs_srgb%2Cg_faces:center%2Cq_auto:eco%2Cw_1920/MjAzMDQ4MjE3MjkyODQyNTYz/website-feature---new-years-eve--december-31.webp"
   ]
 }
