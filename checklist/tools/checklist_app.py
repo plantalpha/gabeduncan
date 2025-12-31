@@ -69,6 +69,7 @@ def ensure_day_generated(iso):
 class ChecklistApp(tk.Tk):
   def __init__(self):
     super().__init__()
+    self._apply_forest_theme()
     self.title("Checklist Publisher")
     self.geometry("980x720")
 
@@ -78,7 +79,9 @@ class ChecklistApp(tk.Tk):
     top = ttk.Frame(self)
     top.pack(fill="x", padx=10, pady=8)
 
-    ttk.Label(top, text=f"Repo: {REPO_ROOT}", foreground="#555").pack(side="left")
+    ttk.Label(top, text="Checklist Publisher", style="Title.TLabel").pack(side="left")
+    ttk.Label(top, text=f"   {REPO_ROOT}", style="Muted.TLabel").pack(side="left")
+
 
     self.push_var = tk.BooleanVar(value=True)
     ttk.Checkbutton(top, text="Publish (git push)", variable=self.push_var).pack(side="right")
@@ -96,6 +99,91 @@ class ChecklistApp(tk.Tk):
     self._build_create_tab()
     self._build_edit_tab()
     self._refresh_edit_day_list()
+
+  def _apply_forest_theme(self):
+    # Forest palette
+    self.COL_BG      = "#0f241a"  # dark forest
+    self.COL_PANEL   = "#173425"  # slightly lighter
+    self.COL_CARD    = "#1f4631"  # mid forest
+    self.COL_ACCENT  = "#2f7a4c"  # bright green accent
+    self.COL_TEXT    = "#e8fff1"  # near-white mint
+    self.COL_MUTED   = "#bfe8cd"  # soft mint
+    self.COL_INPUTBG = "#102a1d"  # input background
+    self.COL_BORDER  = "#295d3e"  # border
+
+    style = ttk.Style(self)
+
+    # Use a modern ttk theme if available
+    try:
+      style.theme_use("clam")
+    except tk.TclError:
+      pass
+
+    # Base window background
+    self.configure(bg=self.COL_BG)
+
+    # Notebook (tabs)
+    style.configure("TNotebook", background=self.COL_BG, borderwidth=0)
+    style.configure("TNotebook.Tab",
+                    padding=(14, 8),
+                    background=self.COL_PANEL,
+                    foreground=self.COL_MUTED)
+    style.map("TNotebook.Tab",
+              background=[("selected", self.COL_CARD), ("active", self.COL_CARD)],
+              foreground=[("selected", self.COL_TEXT), ("active", self.COL_TEXT)])
+
+    # Frames
+    style.configure("TFrame", background=self.COL_BG)
+    style.configure("Card.TFrame", background=self.COL_PANEL)
+
+    # Labels
+    style.configure("TLabel", background=self.COL_BG, foreground=self.COL_TEXT)
+    style.configure("Muted.TLabel", background=self.COL_BG, foreground=self.COL_MUTED)
+    style.configure("Title.TLabel", background=self.COL_BG, foreground=self.COL_TEXT, font=("Segoe UI", 12, "bold"))
+
+    # Buttons
+    style.configure("TButton",
+                    background=self.COL_ACCENT,
+                    foreground="#08140d",
+                    padding=(12, 8),
+                    borderwidth=0)
+    style.map("TButton",
+              background=[("active", "#3b915e"), ("pressed", "#276a43")],
+              foreground=[("active", "#06110b")])
+
+    style.configure("Ghost.TButton",
+                    background=self.COL_PANEL,
+                    foreground=self.COL_TEXT,
+                    padding=(12, 8))
+    style.map("Ghost.TButton",
+              background=[("active", self.COL_CARD), ("pressed", self.COL_PANEL)])
+
+    # Checkbutton
+    style.configure("TCheckbutton", background=self.COL_BG, foreground=self.COL_TEXT)
+
+    # Combobox
+    style.configure("TCombobox",
+                    fieldbackground=self.COL_INPUTBG,
+                    background=self.COL_INPUTBG,
+                    foreground=self.COL_TEXT,
+                    arrowcolor=self.COL_TEXT)
+    self.option_add("*TCombobox*Listbox.background", self.COL_INPUTBG)
+    self.option_add("*TCombobox*Listbox.foreground", self.COL_TEXT)
+
+  def _style_text_widget(self, tw: tk.Text):
+    tw.configure(
+      bg=self.COL_INPUTBG,
+      fg=self.COL_TEXT,
+      insertbackground=self.COL_TEXT,
+      selectbackground="#2f7a4c",
+      selectforeground="#06110b",
+      relief="flat",
+      highlightthickness=1,
+      highlightbackground=self.COL_BORDER,
+      highlightcolor=self.COL_ACCENT,
+      padx=10, pady=10,
+      font=("Consolas", 11)  # feels like a tool/editor
+    )
 
   # ---------- UI helpers ----------
   def _html_toolbar(self, parent, text_widget):
@@ -123,7 +211,7 @@ class ChecklistApp(tk.Tk):
     ttk.Button(bar, text="HR", command=lambda: insert("<hr/>\n")).pack(side="left", padx=(8,0))
     ttk.Button(bar, text="BR", command=lambda: insert("<br/>\n")).pack(side="left", padx=(8,0))
 
-    ttk.Button(bar, text="Preview Notes", command=lambda: self._preview_html(text_widget.get("1.0","end"))).pack(side="right")
+    ttk.Button(bar, text="Preview Notes", style="Ghost.TButton", command=lambda: self._preview_html(text_widget.get("1.0","end"))).pack(side="right")
 
   def _preview_html(self, notes_html):
     tmp = CHECKLIST_DIR / "_notes_preview.html"
@@ -266,7 +354,7 @@ class ChecklistApp(tk.Tk):
     self.edit_combo.pack(side="left", padx=8)
     self.edit_combo.bind("<<ComboboxSelected>>", lambda e: self._load_selected_day())
 
-    ttk.Button(top, text="Reload manifest", command=self._reload_manifest).pack(side="left", padx=(8,0))
+    ttk.Button(top, text="Reload manifest", style="Ghost.TButton", command=self._reload_manifest).pack(side="left", padx=(8,0))
 
     ttk.Label(top, text="Title:").pack(side="left", padx=(16,0))
     self.edit_title = tk.StringVar(value="")
