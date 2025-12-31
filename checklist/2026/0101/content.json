@@ -1,10 +1,14 @@
 {
   "title": "test title",
   "tasks": [
-    "Drink water",
+    "Drink a gallon of water",
     "Move body (10\u201330 min)",
-    "Make something (music/video/code)"
+    "SPIRTUAL TIME!!!",
+    "Make something (music/video/code)",
+    "BE A GOOOD PERSON"
   ],
-  "notesHtml": "test",
-  "photos": []
+  "notesHtml": "test\n\ntest editing\n\n<b>BOLD</b>",
+  "photos": [
+    "https://purepng.com/public/uploads/large/purepng.com-madagascar-penguinmadagascar-penguinsmadagascarpenguinscgiamericantelevision-seriesdreamworksanimationpenguins-skipper-1701528623156tvmwc.png"
+  ]
 }
