@@ -93,3 +93,22 @@ h2{margin:0 0 10px; font-size:15px}
   object-fit:contain; /* shrink-to-fit */
   display:block;
 }
+
+.yearsGrid, .daysGrid{
+  display:grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap:12px;
+}
+
+.pill{
+  display:block;
+  text-decoration:none;
+  color:var(--text);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:12px;
+  background: rgba(0,0,0,.12);
+}
+.pill:hover{filter:brightness(1.08)}
+.pillBig{font-weight:800; font-size:14px}
+.pillSmall{color:var(--muted); font-size:12px; margin-top:4px}

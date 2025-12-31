@@ -30,14 +30,20 @@ function renderYear(m, year) {
     wrap.textContent = "No days yet.";
     return;
   }
+
   days.forEach(mmdd => {
+    const mm = mmdd.slice(0,2);
+    const dd = mmdd.slice(2);
+    const label = `${mm}/${dd}/${year}`; // <-- formatted date
+
     const a = document.createElement("a");
     a.href = `/checklist/${year}/${mmdd}/`;
     a.className = "pill";
-    a.textContent = mmdd;
+    a.innerHTML = `<div class="pillBig">${label}</div><div class="pillSmall">${mmdd}</div>`;
     wrap.appendChild(a);
   });
 }
+
 
 async function main() {
   const view = window.CHECKLIST_VIEW;

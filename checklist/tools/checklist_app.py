@@ -128,13 +128,26 @@ class ChecklistApp(tk.Tk):
   def _preview_html(self, notes_html):
     tmp = CHECKLIST_DIR / "_notes_preview.html"
     body = f"""<!doctype html><html><head><meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Notes Preview</title></head>
-<body style="font-family:system-ui; padding:16px; line-height:1.5">
-{notes_html}
-</body></html>"""
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Notes Preview</title>
+  <link rel="stylesheet" href="./view.css">
+  </head>
+  <body>
+    <header class="top">
+      <div class="titleWrap">
+        <div class="kicker">Notes Preview</div>
+        <h1>How it will render</h1>
+      </div>
+    </header>
+    <main class="wrap">
+      <section class="card">
+        <div class="notes">{notes_html}</div>
+      </section>
+    </main>
+  </body></html>"""
     tmp.write_text(body, "utf-8")
     webbrowser.open(tmp.as_uri())
+
 
   def _get_lines(self, text_widget):
     return [ln.strip() for ln in text_widget.get("1.0","end").splitlines() if ln.strip()]
@@ -184,6 +197,7 @@ class ChecklistApp(tk.Tk):
     ttk.Label(right, text="Notes (rich-ish HTML):").pack(anchor="w")
     self.create_notes = tk.Text(right, height=20)
     self.create_notes.pack(fill="both", expand=True, pady=(4,0))
+    self._bind_enter_to_br(self.create_notes)
     self._html_toolbar(right, self.create_notes)
 
     # bottom actions + log
@@ -231,6 +245,13 @@ class ChecklistApp(tk.Tk):
       messagebox.showerror("Error", str(e))
       self._log(self.create_log, f"ERROR: {e}")
 
+  def _bind_enter_to_br(self, text_widget):
+    def on_enter(event):
+      text_widget.insert("insert", "<br/>\n")
+      return "break"  # prevents actual newline char
+    text_widget.bind("<Return>", on_enter)
+
+
   # ---------- Edit tab ----------
   def _build_edit_tab(self):
     frm = ttk.Frame(self.edit_tab)
@@ -271,6 +292,7 @@ class ChecklistApp(tk.Tk):
     ttk.Label(right, text="Notes (rich-ish HTML):").pack(anchor="w")
     self.edit_notes = tk.Text(right, height=20)
     self.edit_notes.pack(fill="both", expand=True, pady=(4,0))
+    self._bind_enter_to_br(self.edit_notes)
     self._html_toolbar(right, self.edit_notes)
 
     actions = ttk.Frame(frm)
