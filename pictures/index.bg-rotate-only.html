@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabe Duncan</title>
+  <link href="https://fonts.cdnfonts.com/css/spongebob-font-condensed" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tilt-warp" rel="stylesheet">
+  <style>
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', sans-serif;
+      color: #1d0d3a;
+      background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
+      background-size: cover;
+      text-align: center;
+      position: relative;
+    }
+
+    /* Background crossfade layers */
+    .bg-layer{
+      position: fixed;
+      inset: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 0;
+    }
+    .bg-layer.visible{ opacity: 1; }
+
+    /* Optional dim overlay for readability */
+    .bg-dim{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.22);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Your content sits above the background */
+    header, main, footer{
+      position: relative;
+      z-index: 2;
+    }
+
+    header{
+      padding: 18px 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+      background: rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    header h1 {
+      font-size: 28px;
+      margin: 0;
+      text-decoration:none;
+    }
+    header h1 a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav a {
+      margin: 0 15px;
+      text-decoration: none;
+      color: #298374;
+      font-weight: bold;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    nav a:hover{
+      text-decoration: underline;
+    }
+
+    main{
+      padding: 26px 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel{
+      background: rgba(0,0,0,0.32);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero{
+      min-height: 280px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .hero .headline{
+      margin: 0;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: 0.2px;
+    }
+
+    .hero .sub{
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.92;
+      line-height: 1.35;
+    }
+
+    footer{
+      padding: 16px 22px 26px;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0.85;
+      font-size: 13px;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- background layers -->
+  <div id="bgA" class="bg-layer visible"></div>
+  <div id="bgB" class="bg-layer"></div>
+  <div class="bg-dim" aria-hidden="true"></div>
+
+  <header>
+    <h1><a href="/">Gabe Duncan</a></h1>
+    <nav>
+      <!-- Example nav links (optional) -->
+      <!-- <a href="/checklist/2026/">Checklist</a> -->
+      <!-- <a href="/videos/">Videos</a> -->
+    </nav>
+  </header>
+
+  <main>
+
+    <!-- Add your real homepage panels here -->
+    <!-- <section class="panel">More content...</section> -->
+  </main>
+
+  <footer>
+    © <span id="year"></span> Gabe Duncan
+  </footer>
+
+  <script>
+    // Put your background images here.
+    // Tip: use local paths like "./images/bg1.jpg" if you want these stored in your repo.
+    const backgrounds = [
+      "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=2000&q=80",
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=80",
+      "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=2000&q=80"
+    ];
+
+    const INTERVAL_MS = 5000;
+
+    const layerA = document.getElementById("bgA");
+    const layerB = document.getElementById("bgB");
+
+    let showingA = true;
+    let idx = 0;
+
+    function setLayerBg(el, url){
+      el.style.backgroundImage = `url('${url}')`;
+    }
+
+    function showIndex(i){
+      const url = backgrounds[i % backgrounds.length];
+
+      const incoming = showingA ? layerB : layerA;
+      const outgoing = showingA ? layerA : layerB;
+
+      setLayerBg(incoming, url);
+
+      incoming.classList.add("visible");
+      outgoing.classList.remove("visible");
+
+      showingA = !showingA;
+    }
+
+    // Init
+    setLayerBg(layerA, backgrounds[0]);
+
+    // Rotate
+    setInterval(() => {
+      idx = (idx + 1) % backgrounds.length;
+      showIndex(idx);
+    }, INTERVAL_MS);
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gabe Duncan</title>
+
+  <link href="https://fonts.cdnfonts.com/css/spongebob-font-condensed" rel="stylesheet">
+  <link href="https://fonts.cdnfonts.com/css/tilt-warp" rel="stylesheet">
+
+  <style>
+    * { box-sizing: border-box; }
+
+    :root{
+      --panel-bg: rgba(255,255,255,0.82);
+      --panel-border: rgba(255,255,255,0.25);
+      --link: #298374;
+      --link-hover: #20655b;
+    }
+
+    body{
+      margin: 0;
+      min-height: 100vh;
+      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+      color: #111;
+      overflow-x: hidden;
+    }
+
+    /* --- Background crossfade layers --- */
+    .bg-layer{
+      position: fixed;
+      inset: 0;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: cover;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 0;
+    }
+    .bg-layer.visible{ opacity: 1; }
+
+    /* Slight darkening for readability */
+    .bg-dim{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.18);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    header{
+      position: relative;
+      z-index: 3;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 18px 22px;
+      background: var(--panel-bg);
+      border-bottom: 1px solid var(--panel-border);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1{
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    header h1 a{
+      color: inherit;
+      text-decoration: none;
+    }
+
+    nav a{
+      margin: 0 12px;
+      text-decoration: none;
+      color: var(--link);
+      font-weight: 700;
+      font-size: 16px;
+    }
+    nav a:hover{ color: var(--link-hover); }
+
+    main{
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 18px;
+      padding: 22px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .panel{
+      background: rgba(255,255,255,0.75);
+      border: 1px solid var(--panel-border);
+      border-radius: 14px;
+      padding: 16px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
+      backdrop-filter: blur(10px);
+    }
+
+    .panel h2{
+      font-family: 'SpongeBob Font Condensed', sans-serif;
+      margin: 0 0 10px 0;
+      font-size: 28px;
+      letter-spacing: 0.5px;
+    }
+
+    .current-bg{
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      font-family: 'Tilt Warp', sans-serif;
+    }
+
+    .current-bg .label{
+      font-size: 14px;
+      opacity: 0.8;
+    }
+
+    .current-bg a{
+      color: var(--link);
+      text-decoration: none;
+      word-break: break-word;
+      line-height: 1.2;
+      font-size: 18px;
+    }
+    .current-bg a:hover{
+      color: var(--link-hover);
+      text-decoration: underline;
+    }
+
+    .hero{
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      justify-content: center;
+      min-height: 260px;
+    }
+
+    .hero p{
+      font-family: 'Tilt Warp', sans-serif;
+      margin: 0;
+      font-size: 26px;
+      line-height: 1.15;
+    }
+
+    @media (max-width: 860px){
+      main{ grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- background layers -->
+  <div id="bgA" class="bg-layer visible"></div>
+  <div id="bgB" class="bg-layer"></div>
+  <div class="bg-dim" aria-hidden="true"></div>
+
+  <header>
+    <h1><a href="/">Gabe Duncan</a></h1>
+    <nav>
+      <!-- Add nav links whenever you want -->
+      <!-- <a href="/checklist/2026/">Checklist</a> -->
+      <!-- <a href="/videos/">Videos</a> -->
+    </nav>
+  </header>
+
+  <main>
+    <!-- Left column: current background link (one at a time) 
+    <aside class="panel">
+      <h2>Background</h2>
+      <div class="current-bg">
+        <div class="label">Current image link:</div>
+        <a id="bgLink" href="#" target="_blank" rel="noopener noreferrer"></a>
+      </div>
+      <div style="margin-top:12px; font-size:13px; opacity:0.75;">
+        Rotates every 5 seconds with a fade.
+      </div>-->
+    </aside>
+
+    <!-- Right column: your content -->
+    <section class="panel hero">
+      <p>Welcome to my cosmic corner of the internet 👽✨</p>
+      <p style="font-size:18px; opacity:0.85;">
+        (Now with a rotating background slideshow.)
+      </p>
+    </section>
+  </main>
+
+  <script>
+    // Put your background images here (URLs). "link" is what shows in the left column.
+    const backgrounds = [
+      {
+        img: "https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg",
+        link: "https://www.space.com/"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=2000&q=80",
+        link: "https://unsplash.com/photos/1K9T5YiZ2WU"
+      },
+      {
+        img: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=80",
+        link: "https://unsplash.com/photos/VxAwTeiqDao"
+      }
+    ];
+
+    const INTERVAL_MS = 5000;
+
+    const layerA = document.getElementById("bgA");
+    const layerB = document.getElementById("bgB");
+    const bgLinkEl = document.getElementById("bgLink");
+
+    let showingA = true;
+    let idx = 0;
+
+    function setLayerBg(el, url){
+      el.style.backgroundImage = `url('${url}')`;
+    }
+
+    function setCurrentLink(url){
+      bgLinkEl.textContent = url;
+      bgLinkEl.href = url;
+    }
+
+    function showIndex(i){
+      const item = backgrounds[i % backgrounds.length];
+
+      const incoming = showingA ? layerB : layerA;
+      const outgoing = showingA ? layerA : layerB;
+
+      setLayerBg(incoming, item.img);
+      setCurrentLink(item.link);
+
+      // Fade in incoming, fade out outgoing
+      incoming.classList.add("visible");
+      outgoing.classList.remove("visible");
+
+      showingA = !showingA;
+    }
+
+    // Init
+    setLayerBg(layerA, backgrounds[0].img);
+    setCurrentLink(backgrounds[0].link);
+
+    // Rotate
+    setInterval(() => {
+      idx = (idx + 1) % backgrounds.length;
+      showIndex(idx);
+    }, INTERVAL_MS);
+  </script>
+</body>
+</html>
