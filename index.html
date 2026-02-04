@@ -7,55 +7,67 @@
   <link href="https://fonts.cdnfonts.com/css/spongebob-font-condensed" rel="stylesheet">
   <link href="https://fonts.cdnfonts.com/css/tilt-warp" rel="stylesheet">
   <style>
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
       padding: 0;
       font-family: 'Segoe UI', sans-serif;
-      color: #333;
+      color: #1d0d3a;
       background: url('https://cdn.mos.cms.futurecdn.net/BfemybeKVXCf9pgX9WCxsc-1200-80.jpg') no-repeat center center fixed;
       background-size: cover;
       text-align: center;
       position: relative;
     }
 
-    #gif-overlay {
-      display: none;
+    /* Background crossfade layers */
+    .bg-layer{
       position: fixed;
-      top: 0;
-      left: 0;
-      width: 100vw;
-      height: 100vh;
-      background: url('https://i.pinimg.com/originals/1d/15/d8/1d15d8da8b3b6f3a895828ba2663f409.gif') center center no-repeat;
+      inset: 0;
+      background-position: center;
+      background-repeat: no-repeat;
       background-size: cover;
-      opacity: 0.2;
+      opacity: 0;
+      transition: opacity 1.5s ease-in-out;
+      z-index: 0;
+    }
+    .bg-layer.visible{ opacity: 1; }
+
+    /* Optional dim overlay for readability */
+    .bg-dim{
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.22);
+      z-index: 1;
       pointer-events: none;
+    }
+
+    /* Your content sits above the background */
+    header, main, footer{
+      position: relative;
       z-index: 2;
     }
 
-    header {
-      background-color: rgba(255, 255, 255, 0.8);
-      padding: 20px;
+    header{
+      padding: 18px 22px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       flex-wrap: wrap;
-      position: relative;
-      z-index: 3;
+      gap: 10px;
+      background: rgba(0,0,0,0.28);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.15);
     }
 
-    #alien-container {
-      position: relative;
-      z-index: 0; /* behind filter */
-    }
-    
     header h1 {
       font-size: 28px;
       margin: 0;
       text-decoration:none;
+    }
+    header h1 a{
+      color: inherit;
+      text-decoration: none;
     }
 
     nav a {
@@ -66,178 +78,135 @@
       font-size: 16px;
       cursor: pointer;
     }
-
-    .segment-line {
-      width: 90%;
-      height: 2px;
-      background-color: #ccc;
-      margin: 20px auto;
-      position: relative;
-      z-index: 3;
+    nav a:hover{
+      text-decoration: underline;
     }
 
-    .sticker-layout {
+    main{
+      padding: 26px 22px;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      gap: 18px;
+    }
+
+    .panel{
+      background: rgba(0,0,0,0.32);
+      border: 1px solid rgba(255,255,255,0.16);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 34px rgba(0,0,0,0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    .hero{
+      min-height: 280px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      padding: 40px;
-      position: relative;
-      z-index: 3;
+      flex-direction: column;
+      justify-content: center;
+      gap: 10px;
     }
 
-    .box, .box2 {
-      background-color: rgba(255, 255, 255, 0.9);
-      border-radius: 8px;
-      padding: 20px;
-      width: 250px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    .hero .headline{
+      margin: 0;
+      font-size: clamp(28px, 3.5vw, 44px);
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: 0.2px;
     }
 
-    h5 {
-      font-size: 15px;
-      margin: 2px 0;
-      font-weight: bold;
+    .hero .sub{
+      margin: 0;
+      font-size: 18px;
+      opacity: 0.92;
+      line-height: 1.35;
     }
 
-    .carousel, .carousel2 {
-      position: relative;
-      width: 100%;
-      height: 268px;
-      overflow: hidden;
-    }
-
-    .carousel img,
-    .carousel2 img {
-      position: absolute;
-      top: 0;
+    footer{
+      padding: 16px 22px 26px;
+      max-width: 1100px;
+      margin: 0 auto;
+      opacity: 0.85;
+      font-size: 13px;
+      position: fixed;
+      bottom: 0;
       left: 0;
       width: 100%;
-      height: 100%;
-      opacity: 0;
-      transition: opacity 1s ease-in-out;
     }
-
-    .carousel img.active,
-    .carousel2 img.active {
-      opacity: 1;
-      position: relative;
-    }
-
-    .button1, .button2 {
-      margin-top: 15px;
-      padding: 10px 20px;
-      background-color: #298374;
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-    }
-
-    .button1:hover, .button2:hover {
-      background-color: #20655b;
-    }
-
-    .center-gif {
-      max-width: 300px;
-      height: auto;
-    }
-
-    .welcome-box {
-      margin: 30px auto;
-      padding: 20px 40px;
-      max-width: 600px;
-      background: linear-gradient(145deg, #ffffff, #dcdcdc);
-      border-radius: 12px;
-      box-shadow: inset 4px 4px 8px #c0c0c0,
-              inset -4px -4px 8px #ffffff,
-              0 4px 12px rgba(0,0,0,0.15);
-      z-index: 3;
-      position: relative;
-    }
-
-    .welcome-box h2 {
-      margin: 0;
-      font-size: 28px;
-      color: #333;
-      text-shadow: 1px 1px 0 #fff;
-    }
-
-    h2 {
-    font-family: 'SpongeBob Font Condensed', sans-serif;
-    }
-
-
-    p {
-    font-family: 'Tilt Warp', sans-serif;
-    font-size: 28px;
-    }
-    
   </style>
 </head>
+
 <body>
-<div id="gif-overlay"></div>
+  <!-- background layers -->
+  <div id="bgA" class="bg-layer visible"></div>
+  <div id="bgB" class="bg-layer"></div>
+  <div class="bg-dim" aria-hidden="true"></div>
 
-<header>
-  <h1><a href="/">Gabe Duncan</a></h1>
-  <nav>
-  </nav>
-</header>
+  <header>
+    <h1><a href="/">Gabe Duncan</a></h1>
+    <nav>
+      <!-- Example nav links (optional) -->
+      <!-- <a href="/checklist/2026/">Checklist</a> -->
+      <!-- <a href="/videos/">Videos</a> -->
+    </nav>
+  </header>
 
+  <main>
 
-<style>
-.video-player-box {
-  max-width: 700px;
-  margin: 20px;
-  position: relative;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 0 20px rgba(0,0,0,0.5);
-  backdrop-filter: blur(10px);
-  background: rgba(255,255,255,0.1);
-}
+    <!-- Add your real homepage panels here -->
+    <!-- <section class="panel">More content...</section> -->
+  </main>
 
-.video-thumbnail {
-  position: relative;
-  cursor: pointer;
-}
+  <footer>
+    © <span id="year"></span> Gabe Duncan
+  </footer>
 
-.video-thumbnail img {
-  max-height: 400px;
-  width: 400px;
-  height: 400px;
-  border-radius: 16px;
-}
+  <script>
+    // Put your background images here.
+    // Tip: use local paths like "./images/bg1.jpg" if you want these stored in your repo.
+    const backgrounds = [
+      "https://images.unsplash.com/photo-1446776811953-b23d57bd21aa?auto=format&fit=crop&w=2000&q=80",
+      "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=2000&q=80",
+      "https://images.unsplash.com/photo-1444703686981-a3abbc4d4fe3?auto=format&fit=crop&w=2000&q=80"
+    ];
 
-.play-button {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: rgba(0,0,0,0.6);
-  border-radius: 50%;
-  padding: 20px 25px;
-  font-size: 40px;
-  color: white;
-  transition: background 0.3s;
-}
+    const INTERVAL_MS = 5000;
 
-.play-button:hover {
-  background: rgba(255,255,255,0.3);
-}
-</style>
+    const layerA = document.getElementById("bgA");
+    const layerB = document.getElementById("bgB");
 
-<script>
-  window.addEventListener("message", function(event) {
-    if (event.data?.type === "resize-search") {
-      const iframe = document.querySelector("iframe[src*='search.html']");
-      if (iframe) {
-        iframe.style.height = `${event.data.height}px`;
-      }
+    let showingA = true;
+    let idx = 0;
+
+    function setLayerBg(el, url){
+      el.style.backgroundImage = `url('${url}')`;
     }
-  });
-</script>
 
+    function showIndex(i){
+      const url = backgrounds[i % backgrounds.length];
+
+      const incoming = showingA ? layerB : layerA;
+      const outgoing = showingA ? layerA : layerB;
+
+      setLayerBg(incoming, url);
+
+      incoming.classList.add("visible");
+      outgoing.classList.remove("visible");
+
+      showingA = !showingA;
+    }
+
+    // Init
+    setLayerBg(layerA, backgrounds[0]);
+
+    // Rotate
+    setInterval(() => {
+      idx = (idx + 1) % backgrounds.length;
+      showIndex(idx);
+    }, INTERVAL_MS);
+
+    // Footer year
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
