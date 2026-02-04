@@ -185,21 +185,6 @@
   </nav>
 </header>
 
-<div class="welcome-box">
-  <h2 style="font-size: 40px;">Nathan tells all...</h2>
-
-  <div class="video-player-box">
-  <div class="video-thumbnail" onclick="playVideo()">
-    <img src="https://i.imgur.com/qJuyw7W.png" alt="Video thumbnail">
-    <div class="play-button" style="width: 200px; height: 200px;">
-      <img src="https://static.vecteezy.com/system/resources/previews/014/396/445/non_2x/comic-style-triangle-play-icon-with-transparent-background-file-free-png.png" 
-       alt="Video thumbnail" 
-       style="width: 100%; height: 100%;">
-    </div>
-
-  </div>
-  <div id="youtube-frame-container" style="display: none;"></div>
-</div>
 
 <style>
 .video-player-box {
@@ -256,20 +241,6 @@ function playVideo() {
 }
 </script>
 
-
-
-
-
-
-
-  <audio id="pirate-sound" src="arrgh.WAV"></audio>
-<img id="animated-pirate-image-0005.gif" src="pictures/animated-pirate-image-0005.gif" style="cursor: pointer; max-width: 150px;" alt="Pirate Skull">
-</div>
-
-<div id="alien-container">
-    <img id="alien-image" src="https://i.imgur.com/lqy0FuZ.png" alt="Frozen Alien" class="center-gif">
-  </div>
-
 <!-- Secret password dialog -->
 <div id="bald-dialog" style="display:none; position: fixed; top: 30%; left: 50%;
 transform: translate(-50%, -30%); width: 400px; background: linear-gradient(#5e3a1d, #3a230f); border: 5px solid #2d1b0e; padding: 30px;
@@ -289,17 +260,6 @@ z-index: 9999; border-radius: 12px; box-shadow: inset 0 0 10px #2b1a0b, 0 0 20px
 
 <audio id="bg-music" src="Slowmedownbubbleboy.WAV" loop></audio>
 
-<img id="music-toggle-btn" src="https://i.imgur.com/AI2yEdR.png" alt="Toggle Music" 
-style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; cursor: pointer; z-index: 1000;">
-
-<div id="pirate-dialog" style="display:none; position: fixed; top: 30%; left: 50%; 
-transform: translate(-50%, -30%); background: #fff; border: 3px solid #444; padding: 30px; 
-z-index: 9999; border-radius: 10px; box-shadow: 0 0 10px rgba(0,0,0,0.5); font-family: 'SpongeBob Font Condensed', sans-serif; 
-background: url('https://i.imgflip.com/5dopty.jpg?a485208') no-repeat center center fixed; background-size: cover;">
-  <p style="font-size: 20px; font-family: 'SpongeBob Font Condensed', sans-serif; color: #ffffff;">Do you want to become a real pirate?</p>
-  <button onclick="closePirateDialog()" style="margin-right: 20px; font-family: 'SpongeBob Font Condensed', sans-serif;">Nay.</button>
-  <button onclick="becomePirate()" style="margin-right: 20px; font-family: 'SpongeBob Font Condensed', sans-serif;">Aigh!</button>
-</div>
 
 <script>
   document.addEventListener("DOMContentLoaded", function () {
