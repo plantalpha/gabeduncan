@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+  />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  <meta name="theme-color" content="#000000">
+  <title>Vault</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="apple-touch-icon" href="/app/icon.ico">
+  <link rel="icon" href="/app/icon.ico">
+</head>
+
+<body>
+  <main class="app">
+
+    <!-- QUICK ADD -->
+    <section class="quick-add" id="quickAdd">
+      <h1>Quick Add</h1>
+
+      <input
+        type="text"
+        id="linkInput"
+        class="input"
+        placeholder="Paste a link or type a note…"
+        autocomplete="off"
+      />
+
+      <textarea
+        id="noteInput"
+        class="input"
+        placeholder="Optional note…"
+        rows="2"
+      ></textarea>
+      
+      <input
+        type="file"
+        id="imageInput"
+        accept="image/*"
+        class="input"
+      />
+
+      <button class="save-btn" id="captureBtn">Capture</button>
+    </section>
+
+    <!-- COLLECTION -->
+    <section class="collection">
+
+      <header class="collection-header">
+        <h2 id="collectionTitle">My Collection</h2>
+        <input
+          type="search"
+          id="searchInput"
+          placeholder="Search vault…"
+          class="search"
+        />
+        <button class="see-all" id="seeAllBtn">See all</button>
+        <button class="see-all" id="backBtn" hidden>Back</button>
+      </header>
+
+      <div class="filters">
+        <button data-filter="all">All</button>
+        <button data-filter="link">Links</button>
+        <button data-filter="image">Images</button>
+        <button data-filter="note">Notes</button>
+      </div>
+
+      <!-- MAIN OUTPUT -->
+      <div id="collectionZones"></div>
+
+      <!-- EMPTY STATE -->
+      <div id="emptyState" hidden>
+        <p>No signals yet.</p>
+        <p>Capture something above to start.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
