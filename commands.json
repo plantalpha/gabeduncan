@@ -1,0 +1,4 @@
+{
+  "home": "() => location.href='/home'",
+  "invert": "() => document.body.style.filter='invert(1)'"
+}
