@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<meta charset="UTF-8">
+<title>Interactive Scene</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+<div id="scene">
+
+<div id="map">
+
+<img src="background.jpg" id="background">
+
+<!-- debug panel -->
+
+<div id="debugPanel">
+X: <span id="mouseX"></span>
+Y: <span id="mouseY"></span>
+Object: <span id="hoveredID"></span>
+</div>
+
+
+<!-- PNG OBJECTS -->
+
+<img
+id="tree"
+class="object"
+src="tree.png"
+data-x="550"
+data-y="1400"
+data-width="180"
+>
+
+<img
+id="man"
+class="object"
+src="man.png"
+data-x="1400"
+data-y="1400"
+data-width="200"
+>
+
+
+<!-- SVG HOTSPOTS -->
+
+<svg
+id="svgLayer"
+viewBox="0 0 3840 2160"
+preserveAspectRatio="xMidYMid meet"
+>
+
+<path
+id="cliff"
+class="hotspot"
+d="M 3000 1500 L 3200 1500 L 3200 1700 L 3000 1700 Z"
+/>
+
+<path
+id="horse"
+class="hotspot"
+d="M 1800 1000 L 2000 1000 L 2000 1200 L 1800 1200 Z"
+/>
+
+</svg>
+
+</div>
+
+</div>
+
+<script src="app.js"></script>
+
+</body>
+</html>
