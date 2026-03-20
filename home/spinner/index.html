@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Indie Game Spinner</title>
+<link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<div id="topBar">
+
+<button id="loadList">Load Game List</button>
+<input type="file" id="fileInput" accept=".json" hidden>
+
+<div id="currentGameBtn">🎮</div>
+
+</div>
+
+<h1>INDIE GAME SPINNER</h1>
+
+<div id="filters"></div>
+
+
+<div id="spinnerContainer">
+
+<div id="pointer"></div>
+
+<canvas id="wheel" width="500" height="500"></canvas>
+
+<button id="spinBtn">SPIN</button>
+<button onclick="showResult()">TEST POPUP</button>
+</div>
+
+<div id="resultModal" class="hidden">
+
+<h2 id="resultWord"></h2>
+<p id="resultFull"></p>
+
+<button id="acceptBtn">Accept</button>
+<button id="rerollBtn">Reroll</button>
+<button id="cancelBtn">Cancel</button>
+
+</div>
+
+<div id="gamePanel" class="hidden">
+
+<button id="closePanel">X</button>
+
+<h2>Current Games</h2>
+<div id="currentGames"></div>
+
+<h2>Completed Games</h2>
+<div id="completedGames"></div>
+
+</div>
+
+<div id="completeModal" class="hidden">
+
+<h2>Complete Game</h2>
+
+<p id="completeTitle"></p>
+
+<label>Rating (1-10)</label><br>
+<input id="ratingInput" type="number" min="1" max="10"><br><br>
+
+<label>Notes</label><br>
+<textarea id="notesInput"></textarea><br><br>
+
+<button id="saveComplete">Save</button>
+<button id="cancelComplete">Cancel</button>
+
+</div>
+
+<script src="app.js" defer></script>
+<script src="popupFix.js"></script>
+
+</body>
+</html>
