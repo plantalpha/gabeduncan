@@ -1,19 +1,104 @@
 <!DOCTYPE html>
-<html>
-
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Interactive Scene</title>
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GD - Homepage</title>
+  <link rel="icon" type="image/jpg" href="images/favicon.jpg">
+  <!-- Meta Info -->
+  <title>gabeduncan.com</title>
+  <meta name="description" content="total total">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://gabeduncan.com/">
+  <meta property="og:title" content="w">
+  <meta property="og:description" content="God 1st">
+  <meta property="og:image" content="https://gabeduncan.com/images/social-preview.jpg">
+
+  <link rel="stylesheet" href="styles.css">
+  
+
+    
 </head>
 
 <body>
 
-<div id="scene">
+  <header>
+    <div href="/home" class="logo">Gabe Duncan</div>
 
-<div id="map">
+    <nav>
+      <ul>
+        <li><a href="/home">Home</a></li>
+        <li><a href="/">art</a></li>
+        <li><a target="_blank" href="https://www.youtube.com/@breezyjoinks">breezy joinks</a></li>
+        <li><a>blog</a></li>
+      </ul>
+    </nav>
+  </header>
 
-<img src="background2.jpg" id="background">
+  <main>
+    <section class="hero">
+
+      <div id="floating-background"></div>
+
+      <div class="hero-content">
+        <h1>☺︎</h1>
+        <p>
+          
+          <br><br>
+          
+        </p>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    © 2026 Gabe Duncan — All Rights Reserved
+  </footer>
+
+
+<script>
+  const floaterImages = [
+      "https://i1.sndcdn.com/artworks-zMozzGjP3QH7QCI7-IzZaqg-t500x500.jpg",
+      "https://i1.sndcdn.com/artworks-P6jyZzUUF0ezVoxR-aGLRSQ-t500x500.jpg",
+      "https://i1.sndcdn.com/artworks-U6HXisf3g1gx9Xdo-qdOjfw-t500x500.png",
+      "https://i1.sndcdn.com/artworks-U6HXisf3g1gx9Xdo-qdOjfw-t500x500.png",
+      "https://i1.sndcdn.com/artworks-zMozzGjP3QH7QCI7-IzZaqg-t500x500.jpg"
+  ];
+
+  const container = document.getElementById("floating-background");
+
+  function spawnFloater() {
+      const floater = document.createElement("div");
+      floater.classList.add("floater");
+
+      const img = document.createElement("img");
+
+      const randomImage =
+          floaterImages[Math.floor(Math.random() * floaterImages.length)];
+
+      img.src = randomImage;
+
+      const randomTop = Math.random() * 85;
+      const randomSize = 40 + Math.random() * 100;
+      const randomDuration = 20 + Math.random() * 30;
+
+      floater.style.top = randomTop + "%";
+      floater.style.width = randomSize + "px";
+      floater.style.animationDuration = randomDuration + "s";
+
+      floater.appendChild(img);
+      container.appendChild(floater);
+
+      setTimeout(() => {
+          floater.remove();
+      }, randomDuration * 1000);
+  }
+
+  setInterval(() => {
+      spawnFloater();
+  }, 2000);
+</script>
 
 </body>
 </html>
